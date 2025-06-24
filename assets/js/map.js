@@ -25,7 +25,7 @@ let colombiaBoundary = new Image({
     title: "Colombia Administrative level 0",
     source: new ImageWMS({
         url: 'https://www.gis-geoserver.polimi.it/geoserver/wms',
-        params: { 'LAYERS': 'gis:COL_adm0', 'STYLES': 'restricted' }
+        params: { 'LAYERS': 'gis:COL_adm0' }
     }),
     visible: false
 });
@@ -54,6 +54,7 @@ var colombiaRoads = new Image({
 // Colombia Rivers
 var colombiaRivers = new Image({
     title: "Colombia Rivers",
+    type: "overlay",
     source: new ImageWMS({
         url: 'https://www.gis-geoserver.polimi.it/geoserver/wms',
         params: { 'LAYERS': 'gis:COL_rivers' }
@@ -77,6 +78,7 @@ let overlayLayers = new Group({
         colombiaRoads
     ]
 });
+
 
 // Map Initialization
 let mapOrigin = fromLonLat([-74, 4.6]);
@@ -160,13 +162,13 @@ basemapLayers.getLayers().extend([
 
 // Add the WFS layer here:
 // First, the URL definition:
-var wfsUrl = "https://www.gis-geoserver.polimi.it/geoserver/gis/wfs?" +
-    "service=WFS&" +
-    "version=2.0.0&" +
-    "request=GetFeature&" +
-    "typeName=gis:COL_water_areas&" +
-    "srsname=EPSG:3857&" +
-    "outputFormat=application/json";
+var wfsUrl = "https://www.gis-geoserver.polimi.it/geoserver/gis/wfs?" + 
+"service=WFS&" + 
+"version=2.0.0&" +
+"request=GetFeature&" + 
+"typeName=gis:COL_water_areas&" + 
+"srsname=EPSG:3857&" + 
+"outputFormat=application/json";
 // Then the Source and Layer definitions:
 let wfsSource = new VectorSource({});
 let wfsLayer = new Vector({
@@ -186,22 +188,21 @@ let wfsLayer = new Vector({
 
 // Finally the call to the WFS service:
 fetch(wfsUrl)
-    .then((response) => {
-        if (!response.ok) {
-            throw new Error('Error ' + response.statusText);
-        }
-        response.json().then(data => {
-            wfsSource.addFeatures(
-                new GeoJSON().readFeatures(data)
-            );
-        })
-    });
+.then((response) => {
+    if (!response.ok) {
+        throw new Error('Error ' + response.statusText);
+    }
+    response.json().then(data => {
+        wfsSource.addFeatures(
+	    new GeoJSON().readFeatures(data)
+	);
+    })
+});
 overlayLayers.getLayers().extend([wfsLayer]);
-
 
 // Add the local static GeoJSON layer here:
 let staticGeoJSONSource = new VectorSource({
-    url: '../geojson/COL_adm2.geojson',
+    url: '../geojson/COL_adm2.geojson', 
     format: new GeoJSON()
 });
 let staticGeoJSONLayer = new Vector({
@@ -312,8 +313,6 @@ var legendContent = document.getElementById('legend-content');
 legendHTMLString += "</ul>";
 legendContent.innerHTML = legendHTMLString;
 
-
 // Add the layer groups to the map here, at the end of the script!
 map.addLayer(basemapLayers);
 map.addLayer(overlayLayers);
-
