@@ -1,0 +1,22 @@
+{
+  "name": "gis-webmap",
+  "version": "1.0.0",
+  "description": "Project for the Web Development part of the GIS lessons 2025.",
+  "scripts": {
+    "start": "vite --base=./",
+    "build-production": "vite build --base=/polimi-webgis-class-2025/",
+    "build-local": "vite build",
+    "preview": "vite preview --base=./"
+  },
+  "author": "",
+  "license": "CC0-1.0",
+  "dependencies": {
+    "bootstrap": "5.3.3",
+    "glob": "10.3.10",
+    "ol": "8.2.0",
+    "ol-layerswitcher": "4.1.1"
+  },
+  "devDependencies": {
+    "vite": "6.3.4"
+  }
+}
