@@ -22,12 +22,12 @@ let osm = new Tile({
 
 // Colombia Administrative Boundaries
 let colombiaBoundary = new Image({
-    title: "Colombia Administrative level 0",
+    title: "France bivariate map pm2p5",
     source: new ImageWMS({
         url: 'https://www.gis-geoserver.polimi.it/geoserver/wms',
-        params: { 'LAYERS': 'gis:COL_adm0' }
+        params: { 'LAYERS': 'gisgeoserver_03:France_pm2p5_bivariate_zones' }
     }),
-    visible: false
+    visible: true
 });
 
 // Colombia Administrative level 1
@@ -81,7 +81,7 @@ let overlayLayers = new Group({
 
 
 // Map Initialization
-let mapOrigin = fromLonLat([-74, 4.6]);
+let mapOrigin = fromLonLat([2, 46]);
 let zoomLevel = 5;
 let map = new Map({
     target: document.getElementById('map'),
@@ -91,7 +91,7 @@ let map = new Map({
         center: mapOrigin,
         zoom: zoomLevel
     }),
-    projection: 'EPSG:3857'
+    projection: 'EPSG:4326'
 });
 
 // Add the map controls here:
