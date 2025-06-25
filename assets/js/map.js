@@ -20,49 +20,36 @@ let osm = new Tile({
     source: new OSM()
 });
 
-// Colombia Administrative Boundaries
-let colombiaBoundary = new Image({
-    title: "France bivariate map pm2p5",
+// no2 Bivariate
+let no2bivariate = new Image({
+    title: "Bivariate map no2",
     source: new ImageWMS({
         url: 'https://www.gis-geoserver.polimi.it/geoserver/wms',
-        params: { 'LAYERS': 'gisgeoserver_03:France_pm2p5_bivariate_zones' }
+        params: { 'LAYERS': 'gisgeoserver_03:France_no2_2020_bivariate' }
     }),
     visible: true
 });
 
-// Colombia Administrative level 1
-var colombiaDepartments = new Image({
-    title: "Colombia Administrative level 1",
+// pm2p5 Bivariate
+let pm2p5bivariate = new Image({
+    title: "Bivariate map pm2p5",
     source: new ImageWMS({
         url: 'https://www.gis-geoserver.polimi.it/geoserver/wms',
-        params: { 'LAYERS': 'gis:COL_adm1' }
+        params: { 'LAYERS': 'gisgeoserver_03:France_pm2p5_2020_bivariate' }
     }),
-    opacity: 0.5,
-    visible: false
+    visible: true
 });
 
-// Colombia Roads
-var colombiaRoads = new Image({
-    title: "Colombia Roads",
+// pm10 Bivariate
+let pm10bivariate = new Image({
+    title: "Bivariate map pm10",
     source: new ImageWMS({
         url: 'https://www.gis-geoserver.polimi.it/geoserver/wms',
-        params: { 'LAYERS': 'gis:COL_roads' }
+        params: { 'LAYERS': 'gisgeoserver_03:France_pm10_2020_bivariate' }
     }),
-    visible: false
+    visible: true
 });
 
-// Colombia Rivers
-var colombiaRivers = new Image({
-    title: "Colombia Rivers",
-    type: "overlay",
-    source: new ImageWMS({
-        url: 'https://www.gis-geoserver.polimi.it/geoserver/wms',
-        params: { 'LAYERS': 'gis:COL_rivers' }
-    }),
-    visible: false,
-    minResolution: 1000,
-    maxResolution: 5000
-});
 
 // Add the layer groups code here:
 let basemapLayers = new Group({
@@ -72,10 +59,9 @@ let basemapLayers = new Group({
 let overlayLayers = new Group({
     title: 'Overlay Layers',
     layers: [
-        colombiaBoundary,
-        colombiaDepartments,
-        colombiaRivers,
-        colombiaRoads
+        no2bivariate,
+        pm2p5bivariate,
+        pm10bivariate
     ]
 });
 
@@ -162,13 +148,14 @@ basemapLayers.getLayers().extend([
 
 // Add the WFS layer here:
 // First, the URL definition:
-var wfsUrl = "https://www.gis-geoserver.polimi.it/geoserver/gis/wfs?" + 
+/*var wfsUrl = "https://www.gis-geoserver.polimi.it/geoserver/gis/wfs?" + 
 "service=WFS&" + 
 "version=2.0.0&" +
 "request=GetFeature&" + 
 "typeName=gis:COL_water_areas&" + 
 "srsname=EPSG:3857&" + 
 "outputFormat=application/json";
+
 // Then the Source and Layer definitions:
 let wfsSource = new VectorSource({});
 let wfsLayer = new Vector({
@@ -198,7 +185,7 @@ fetch(wfsUrl)
 	);
     })
 });
-overlayLayers.getLayers().extend([wfsLayer]);
+overlayLayers.getLayers().extend([wfsLayer]); */
 
 // Add the local static GeoJSON layer here:
 let staticGeoJSONSource = new VectorSource({
@@ -206,19 +193,20 @@ let staticGeoJSONSource = new VectorSource({
     format: new GeoJSON()
 });
 let staticGeoJSONLayer = new Vector({
-    title: "Colombia Municipalities",
+    title: "France boundaries",
     source: staticGeoJSONSource,
     style: new Style({
         fill: new Fill({
-            color: "rgba(255, 127, 80, 0.5)"
+            color: "rgba(0, 0, 0, 0)"
         }),
         stroke: new Stroke({
             width: 2,
-            color: "#ff7f50"
+            color: "rgba(55, 58, 122, 0.5)"
         })
     })
 });
 overlayLayers.getLayers().push(staticGeoJSONLayer);
+
 
 // Add the popup code here:
 var container = document.getElementById('popup');
