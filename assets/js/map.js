@@ -189,7 +189,7 @@ overlayLayers.getLayers().extend([wfsLayer]); */
 
 // Add the local static GeoJSON layer here:
 let staticGeoJSONSource = new VectorSource({
-    url: '../geojson/COL_adm2.geojson', 
+    url: '../geojson/France_boundaries.geojson', 
     format: new GeoJSON()
 });
 let staticGeoJSONLayer = new Vector({
@@ -201,7 +201,7 @@ let staticGeoJSONLayer = new Vector({
         }),
         stroke: new Stroke({
             width: 2,
-            color: "rgba(55, 58, 122, 0.5)"
+            color: "rgba(55, 60, 153, 1)"
         })
     })
 });
