@@ -242,27 +242,33 @@ map.on('pointermove', function(event) {
 });
 
 //build the legend
-
 function getLegendElement(title, color) {
     return '<li>' + 
         '<span class="legend-color" style="background-color: ' + color + ';"></span>' +
         '<span>' + title + '</span></li>';
 }
+
+//This updates the legend, since we have just ImageWMS and geoJson as layers it takes care of just these two cases
 async function updateLegend() {
     let localLegendHTML = '<ul>';
     async function processLayer(layer) {
-        if (layer instanceof Group) {
+        if (layer instanceof Group) { //if the current layes is a group we call the function recursively on its sublayers
             const subLayers = layer.getLayers().getArray();
             for (let subLayer of subLayers) {
                 await processLayer(subLayer);
             }
-        } else if (!layer.getVisible()) {
+        } else if (!layer.getVisible()) {//If the layer is not visible we don't add it to the legend
             return;
         } else if (layer.getSource && layer.getSource() instanceof ImageWMS) {
-            const layerTitle = layer.get('title') || 'Untitled';
+            const layerTitle = layer.get('title');
             localLegendHTML += getLegendElement(layerTitle, null);
+            const legendUrl = layer.getSource().getLegendUrl(); //We get the image legend and show it as a picture
+            if (legendUrl) {
+                const legendHtml = '<img src="' + legendUrl + '" alt="Legend">';
+                localLegendHTML += legendHtml;
+            }
 
-        } else {
+        } else {//This is teh case of GeoJSON
             var layerStyle = layer.getStyle();
             var layerColor = layerStyle.getStroke().getColor();
             var layerTitle = layer.get('title');
@@ -296,204 +302,3 @@ map.addLayer(basemapLayers);
 map.addLayer(overlayLayers);
 addVisibilityListeners(overlayLayers);
 updateLegend();
-
-
-/* WORKING VERSION
-async function processLayer(layer) {
-    if (layer instanceof Group) {
-        const subLayers = layer.getLayers().getArray();
-        for (let subLayer of subLayers) {
-            await processLayer(subLayer); // ricorsione
-        }
-    } else if (layer.getSource && layer.getSource() instanceof ImageWMS) {
-        try {
-            const legendUrl = layer.getSource().getLegendUrl(0, { format: "application/json" });
-            const response = await fetch(legendUrl);
-            const data = await response.json();
-            const layerTitle = layer.get('title') || 'Untitled';
-            const symbolizer = data["Legend"][0]["rules"][0]["symbolizers"][0];
-            let layerColor = null;
-
-            if (symbolizer.Polygon) {
-                layerColor = symbolizer.Polygon.fill;
-            } else if (symbolizer.Line) {
-                layerColor = symbolizer.Line.stroke;
-            }
-
-            if (layerColor) {
-                legendHTMLString += getLegendElement(layerTitle, layerColor);
-            }
-        } catch (e) {
-            console.warn("Legend fetch failed for", layer.get('title'), e);
-        }
-    } else {
-
-        const layerStyle = layer.getStyle ? layer.getStyle() : null;
-        let layerColor = null;
-        if (layerStyle && typeof layerStyle.getFill === "function") {
-            const fill = layerStyle.getFill();
-            if (fill && typeof fill.getColor === "function") {
-                layerColor = fill.getColor();
-            }
-        }
-        const layerTitle = layer.get('title') || 'Untitled';
-        if (layerColor) {
-            legendHTMLString += getLegendElement(layerTitle, layerColor);
-        }
-
-        var layerStyle = layer.getStyle();
-        //var layerColor = layerStyle.getFill().getColor();
-        var layerColor = layerStyle["stroke"];
-        var layerTitle = layer.get('title');
-        legendHTMLString += getLegendElement(layerTitle, layerColor);
-    }
-}
-*/
-
-/*
-// Add the legend code here:
-var legendHTMLString = '<ul>';
-function getLegendElement(title, color){
-    return '<li>' + 
-        '<span class="legend-color" style="background-color: ' + color + ' ">' + 
-        '</span><span>' + 
-        title +
-        '</span></li>';
-}
-
-async function processLayer(layer) {
-    if (layer instanceof ol.layer.Group) {
-        const subLayers = layer.getLayers().getArray();
-        for (let subLayer of subLayers) {
-            await processLayer(subLayer); // ricorsione
-        }
-    } else if (layer.getSource && layer.getSource() instanceof ImageWMS){
-        var legendURLParams = {format: "application/json"};
-                var legendUrl = layer.getSource().getLegendUrl(0, legendURLParams);
-                // make the legend JSON request
-                await fetch(legendUrl).then(async (response) => {
-                    await response.json().then((data) => {
-                        var layerTitle = layer.get('title');
-                        var layerSymbolizer = data["Legend"][0]["rules"][0]["symbolizers"][0];
-                        var layerColor = null;
-                        if("Polygon" in layerSymbolizer){
-                            layerColor = layerSymbolizer["Polygon"]["fill"];
-                        } else if("Line" in layerSymbolizer){
-                            layerColor = layerSymbolizer["Line"]["stroke"];
-                        }
-
-                        if(layerColor != null){
-                            legendHTMLString += getLegendElement(layerTitle, layerColor);
-                        }
-                    });
-                });
-    }else {
-        var layerStyle = layer.getStyle();
-        var layerColor = layerStyle.getFill().getColor();
-        var layerTitle = layer.get('title');
-        legendHTMLString += getLegendElement(layerTitle, layerColor);
-    }
-}
-
-// Avvia la generazione leggenda
-(async () => {
-    const layers = overlayLayers.getLayers().getArray();
-    for (let layer of layers) {
-        await processLayer(layer);
-    }
-    var legendContent = document.getElementById('legend-content');
-    legendHTMLString += "</ul>";
-    legendContent.innerHTML = legendHTMLString;
-})();
-
-
-// Finish building the legend HTML string
-var legendContent = document.getElementById('legend-content');
-legendHTMLString += "</ul>";
-legendContent.innerHTML = legendHTMLString;
-
-for(let overlayLayer of overlayLayers.getLayers().getArray()){
-    if(overlayLayer.getSource() instanceof ImageWMS){
-        var legendURLParams = {format: "application/json"};
-        var legendUrl = overlayLayer.getSource().getLegendUrl(0, legendURLParams);
-        // make the legend JSON request
-        await fetch(legendUrl).then(async (response) => {
-            await response.json().then((data) => {
-                var layerTitle = overlayLayer.get('title');
-                var layerSymbolizer = data["Legend"][0]["rules"][0]["symbolizers"][0];
-                var layerColor = null;
-                if("Polygon" in layerSymbolizer){
-                    layerColor = layerSymbolizer["Polygon"]["fill"];
-                } else if("Line" in layerSymbolizer){
-                    layerColor = layerSymbolizer["Line"]["stroke"];
-                }
-
-                if(layerColor != null){
-                    legendHTMLString += getLegendElement(layerTitle, layerColor);
-                }
-            });
-        });
-    } 
-    if(overlayLayer.getSource() instanceof Group){
-        for(let overlayLayer_child of overlayLayers.getLayers().getArray()){
-            if(overlayLayer_child.getSource() instanceof ImageWMS){
-                var legendURLParams = {format: "application/json"};
-                var legendUrl = overlayLayer_child.getSource().getLegendUrl(0, legendURLParams);
-                // make the legend JSON request
-                await fetch(legendUrl).then(async (response) => {
-                    await response.json().then((data) => {
-                        var layerTitle = overlayLayer_child.get('title');
-                        var layerSymbolizer = data["Legend"][0]["rules"][0]["symbolizers"][0];
-                        var layerColor = null;
-                        if("Polygon" in layerSymbolizer){
-                            layerColor = layerSymbolizer["Polygon"]["fill"];
-                        } else if("Line" in layerSymbolizer){
-                            layerColor = layerSymbolizer["Line"]["stroke"];
-                        }
-
-                        if(layerColor != null){
-                            legendHTMLString += getLegendElement(layerTitle, layerColor);
-                        }
-                    });
-                });
-            }
-        }
-    }
-    else {
-        var layerStyle = overlayLayer.getStyle();
-        var layerColor = layerStyle.getFill().getColor();
-        var layerTitle = overlayLayer.get('title');
-        legendHTMLString += getLegendElement(layerTitle, layerColor);
-    }
-}
-
-    for(let overlayLayer of overlayLayers.getLayers().getArray()){
-    if(overlayLayer.getSource() instanceof ImageWMS){
-        var legendURLParams = {format: "application/json"};
-        var legendUrl = overlayLayer.getSource().getLegendUrl(0, legendURLParams);
-        // make the legend JSON request
-        await fetch(legendUrl).then(async (response) => {
-            await response.json().then((data) => {
-                var layerTitle = overlayLayer.get('title');
-                var layerSymbolizer = data["Legend"][0]["rules"][0]["symbolizers"][0];
-                var layerColor = null;
-                if("Polygon" in layerSymbolizer){
-                    layerColor = layerSymbolizer["Polygon"]["fill"];
-                } else if("Line" in layerSymbolizer){
-                    layerColor = layerSymbolizer["Line"]["stroke"];
-                }
-
-                if(layerColor != null){
-                    legendHTMLString += getLegendElement(layerTitle, layerColor);
-                }
-            });
-        });
-
-    } else {
-        var layerStyle = overlayLayer.getStyle();
-        var layerColor = layerStyle.getFill().getColor();
-        var layerTitle = overlayLayer.get('title');
-        legendHTMLString += getLegendElement(layerTitle, layerColor);
-    }
-}
-*/
