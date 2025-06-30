@@ -242,7 +242,6 @@ map.on('pointermove', function(event) {
 });
 
 //build the legend
-var legendHTMLString = '<ul>';
 
 function getLegendElement(title, color) {
     return '<li>' + 
@@ -301,52 +300,6 @@ async function updateLegend() {
     const legendContent = document.getElementById('legend-content');
     if (legendContent) {
         legendContent.innerHTML = localLegendHTML;
-    }
-}
-
-
-async function processLayer(layer) {
-    if (layer instanceof Group) {
-        const subLayers = layer.getLayers().getArray();
-        for (let subLayer of subLayers) {
-            await processLayer(subLayer); // ricorsione
-        }
-    } else if (!layer.getVisible()) {
-        return; // salta solo layer foglia non visibili
-    }else if (layer.getSource && layer.getSource() instanceof ImageWMS) {
-        try {
-            const legendUrl = layer.getSource().getLegendUrl(0, { format: "application/json" });
-            const response = await fetch(legendUrl);
-            const data = await response.json();
-            const layerTitle = layer.get('title') || 'Untitled';
-            const symbolizer = data?.Legend?.[0]?.rules?.[0]?.symbolizers?.[0];
-            let layerColor = null;
-
-            if (symbolizer?.Polygon) {
-                layerColor = symbolizer.Polygon.fill;
-            } else if (symbolizer?.Line) {
-                layerColor = symbolizer.Line.stroke;
-            }
-
-            if (layerColor) {
-                legendHTMLString += getLegendElement(layerTitle, layerColor);
-            }
-        } catch (e) {
-            console.warn("Legend fetch failed for", layer.get('title'), e);
-        }
-    } else {
-        const layerStyle = layer.getStyle ? layer.getStyle() : null;
-        let layerColor = null;
-        if (layerStyle && typeof layerStyle.getFill === "function") {
-            const fill = layerStyle.getFill();
-            if (fill && typeof fill.getColor === "function") {
-                layerColor = fill.getColor();
-            }
-        }
-        const layerTitle = layer.get('title') || 'Untitled';
-        if (layerColor) {
-            legendHTMLString += getLegendElement(layerTitle, layerColor);
-        }
     }
 }
 
