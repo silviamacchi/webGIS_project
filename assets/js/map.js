@@ -264,7 +264,7 @@ async function updateLegend() {
 
         } else {
             var layerStyle = layer.getStyle();
-            var layerColor = layerStyle["stroke"];
+            var layerColor = layerStyle.getStroke().getColor();
             var layerTitle = layer.get('title');
             localLegendHTML += getLegendElement(layerTitle, layerColor);
         }
