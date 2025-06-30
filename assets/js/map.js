@@ -249,15 +249,71 @@ function getLegendElement(title, color) {
         '<span class="legend-color" style="background-color: ' + color + ';"></span>' +
         '<span>' + title + '</span></li>';
 }
+async function updateLegend() {
+    let localLegendHTML = '<ul>';
+    async function processLayer(layer) {
+        if (layer instanceof Group) {
+            const subLayers = layer.getLayers().getArray();
+            for (let subLayer of subLayers) {
+                await processLayer(subLayer);
+            }
+        } else if (!layer.getVisible()) {
+            return;
+        } else if (layer.getSource && layer.getSource() instanceof ImageWMS) {
+            try {
+                const legendUrl = layer.getSource().getLegendUrl(0, { format: "application/json" });
+                const response = await fetch(legendUrl);
+                const data = await response.json();
+                const layerTitle = layer.get('title') || 'Untitled';
+                const symbolizer = data?.Legend?.[0]?.rules?.[0]?.symbolizers?.[0];
+                let layerColor = null;
+
+                if (symbolizer?.Polygon) {
+                    layerColor = symbolizer.Polygon.fill;
+                } else if (symbolizer?.Line) {
+                    layerColor = symbolizer.Line.stroke;
+                }
+
+                if (layerColor) {
+                    localLegendHTML += getLegendElement(layerTitle, layerColor);
+                }
+            } catch (e) {
+                console.warn("Legend fetch failed for", layer.get('title'), e);
+            }
+        } else {
+            const layerStyle = layer.getStyle ? layer.getStyle() : null;
+            let layerColor = null;
+            if (layerStyle && typeof layerStyle.getFill === "function") {
+                const fill = layerStyle.getFill();
+                if (fill && typeof fill.getColor === "function") {
+                    layerColor = fill.getColor();
+                }
+            }
+            const layerTitle = layer.get('title') || 'Untitled';
+            if (layerColor) {
+                localLegendHTML += getLegendElement(layerTitle, layerColor);
+            }
+        }
+    }
+
+    await processLayer(overlayLayers);
+    localLegendHTML += '</ul>';
+    const legendContent = document.getElementById('legend-content');
+    if (legendContent) {
+        legendContent.innerHTML = localLegendHTML;
+    }
+}
+
 
 async function processLayer(layer) {
-    
     if (layer instanceof Group) {
         const subLayers = layer.getLayers().getArray();
         for (let subLayer of subLayers) {
             await processLayer(subLayer); // ricorsione
         }
-    } else if (layer.getSource && layer.getSource() instanceof ImageWMS) {
+    } else if (!layer.getVisible()) {
+        return; // salta solo layer foglia non visibili
+    }else if (layer.getSource && layer.getSource() instanceof ImageWMS) {
         try {
             const legendUrl = layer.getSource().getLegendUrl(0, { format: "application/json" });
             const response = await fetch(legendUrl);
@@ -294,22 +350,35 @@ async function processLayer(layer) {
     }
 }
 
-// Add the layer groups to the map here, at the end of the script!
-map.addLayer(basemapLayers);
-map.addLayer(overlayLayers);
+function addVisibilityListeners(groupLayer) {
+    const layers = groupLayer.getLayers().getArray();
+    for (let layer of layers) {
+        if (layer instanceof Group) {
+            addVisibilityListeners(layer); // ricorsione nei gruppi
+        }
 
-
-// Avvia la generazione leggenda
-(async () => {
-    await processLayer(overlayLayers);
+        layer.on('change:visible', () => {
+            updateLegend(); // aggiorna la legenda quando cambia visibilità
+        });
+    }
+}
+/*
+async function updateLegend() {
+    legendHTMLString = '<ul>';
+    await processLayer(overlayLayers); // solo layer visibili saranno processati
     legendHTMLString += '</ul>';
     const legendContent = document.getElementById('legend-content');
     if (legendContent) {
         legendContent.innerHTML = legendHTMLString;
-    } else {
-        console.error("Elemento con id 'legend-content' non trovato nel DOM.");
     }
-})();
+}
+*/
+// Add the layer groups to the map here, at the end of the script!
+map.addLayer(basemapLayers);
+map.addLayer(overlayLayers);
+addVisibilityListeners(overlayLayers);
+updateLegend();
+
 
 /* WORKING VERSION
 async function processLayer(layer) {
