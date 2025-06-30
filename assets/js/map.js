@@ -259,39 +259,14 @@ async function updateLegend() {
         } else if (!layer.getVisible()) {
             return;
         } else if (layer.getSource && layer.getSource() instanceof ImageWMS) {
-            try {
-                const legendUrl = layer.getSource().getLegendUrl(0, { format: "application/json" });
-                const response = await fetch(legendUrl);
-                const data = await response.json();
-                const layerTitle = layer.get('title') || 'Untitled';
-                const symbolizer = data?.Legend?.[0]?.rules?.[0]?.symbolizers?.[0];
-                let layerColor = null;
-
-                if (symbolizer?.Polygon) {
-                    layerColor = symbolizer.Polygon.fill;
-                } else if (symbolizer?.Line) {
-                    layerColor = symbolizer.Line.stroke;
-                }
-
-                if (layerColor) {
-                    localLegendHTML += getLegendElement(layerTitle, layerColor);
-                }
-            } catch (e) {
-                console.warn("Legend fetch failed for", layer.get('title'), e);
-            }
-        } else {
-            const layerStyle = layer.getStyle ? layer.getStyle() : null;
-            let layerColor = null;
-            if (layerStyle && typeof layerStyle.getFill === "function") {
-                const fill = layerStyle.getFill();
-                if (fill && typeof fill.getColor === "function") {
-                    layerColor = fill.getColor();
-                }
-            }
             const layerTitle = layer.get('title') || 'Untitled';
-            if (layerColor) {
-                localLegendHTML += getLegendElement(layerTitle, layerColor);
-            }
+            localLegendHTML += getLegendElement(layerTitle, null);
+
+        } else {
+            var layerStyle = layer.getStyle();
+            var layerColor = layerStyle["stroke"];
+            var layerTitle = layer.get('title');
+            localLegendHTML += getLegendElement(layerTitle, layerColor);
         }
     }
 
@@ -315,17 +290,7 @@ function addVisibilityListeners(groupLayer) {
         });
     }
 }
-/*
-async function updateLegend() {
-    legendHTMLString = '<ul>';
-    await processLayer(overlayLayers); // solo layer visibili saranno processati
-    legendHTMLString += '</ul>';
-    const legendContent = document.getElementById('legend-content');
-    if (legendContent) {
-        legendContent.innerHTML = legendHTMLString;
-    }
-}
-*/
+
 // Add the layer groups to the map here, at the end of the script!
 map.addLayer(basemapLayers);
 map.addLayer(overlayLayers);
