@@ -60,6 +60,37 @@ let pm10bivariate = new Image({
     visible: false
 });
 
+// no2 annual average difference
+let NO2_aad = new Image({
+    title: "NO2_2017-2021_AAD_map_2022",
+    source: new ImageWMS({
+        url: 'https://www.gis-geoserver.polimi.it/geoserver/wms',
+        params: { 'LAYERS': 'gisgeoserver_03:France_NO2_2017-2021_AAD_map_2022	' }
+    }),
+    visible: false
+});
+
+// pm2p5 annual average difference
+let pm2p5_aad = new Image({
+    title: "pm2p5 _2017-2021_AAD_map _2022",
+    source: new ImageWMS({
+        url: 'https://www.gis-geoserver.polimi.it/geoserver/wms',
+        params: { 'LAYERS': 'gisgeoserver_03:France_pm2p5 _2017-2021_AAD_map _2022' }
+    }),
+    visible: false
+});
+
+// pm10 annual average difference
+let pm10_aad = new Image({
+    title: "pm10 _2017-2021_AAD_map _2022",
+    source: new ImageWMS({
+        url: 'https://www.gis-geoserver.polimi.it/geoserver/wms',
+        params: { 'LAYERS': 'gisgeoserver_03:FRANCE_pm10 _2017-2021_AAD_map _2022' }
+    }),
+    visible: false
+});
+
+
 
 // Add the layer groups code here:
 let basemapLayers = new Group({
@@ -89,7 +120,7 @@ let overlayLayers = new Group({
         new Group({
             title: 'Five years difference from 2017 to 2022',
             fold: 'close',
-            layers: []
+            layers: [NO2_aad, pm2p5_aad, pm10_aad]
         }),
         Land_cover,
     ]
