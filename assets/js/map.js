@@ -62,7 +62,7 @@ let pm10bivariate = new Image({
 
 // no2 annual average difference
 let NO2_aad = new Image({
-    title: "NO2 annual average difference 2022",
+    title: "Annual average difference no2",
     source: new ImageWMS({
         url: 'https://www.gis-geoserver.polimi.it/geoserver/wms',
         params: { 'LAYERS': 'gisgeoserver_03:France_NO2_2017-2021_AAD_map_2022	' }
@@ -72,7 +72,7 @@ let NO2_aad = new Image({
 
 // pm2p5 annual average difference
 let pm2p5_aad = new Image({
-    title: "PM2p5 annual average difference 2022",
+    title: "Annual average difference pm2p5",
     source: new ImageWMS({
         url: 'https://www.gis-geoserver.polimi.it/geoserver/wms',
         params: { 'LAYERS': 'gisgeoserver_03:France_pm2p5 _2017-2021_AAD_map _2022' }
@@ -82,7 +82,7 @@ let pm2p5_aad = new Image({
 
 // pm10 annual average difference
 let pm10_aad = new Image({
-    title: "PM10 annual average difference 2022",
+    title: "Annual average difference pm10",
     source: new ImageWMS({
         url: 'https://www.gis-geoserver.polimi.it/geoserver/wms',
         params: { 'LAYERS': 'gisgeoserver_03:FRANCE_pm10 _2017-2021_AAD_map _2022' }
@@ -92,7 +92,7 @@ let pm10_aad = new Image({
 
 // no2 concentration map 2020
 let NO2_2020 = new Image({
-    title: "NO2 2020",
+    title: "Concentration no2 2020",
     source: new ImageWMS({
         url: 'https://www.gis-geoserver.polimi.it/geoserver/wms',
         params: { 'LAYERS': 'gisgeoserver_03:rec_France_average_NO2_2020	' }
@@ -102,7 +102,7 @@ let NO2_2020 = new Image({
 
 // pm2p5 concentration map 2020
 let pm2p5_2020 = new Image({
-    title: "PM2p5  2020",
+    title: "Concentration pm2p5  2020",
     source: new ImageWMS({
         url: 'https://www.gis-geoserver.polimi.it/geoserver/wms',
         params: { 'LAYERS': 'gisgeoserver_03:France_pm2p5_concentration_map_2020' }
@@ -112,7 +112,7 @@ let pm2p5_2020 = new Image({
 
 // pm10 concentration map 2020
 let pm10_2020 = new Image({
-    title: "PM10 2020",
+    title: "Concentration pm10 2020",
     source: new ImageWMS({
         url: 'https://www.gis-geoserver.polimi.it/geoserver/wms',
         params: { 'LAYERS': 'gisgeoserver_03:rec_France_average_pm10_2020' }
@@ -141,12 +141,12 @@ let overlayLayers = new Group({
             ]
         }),
         new Group({
-            title: 'Annual average concentration',
+            title: 'Annual average concentration 2020',
             fold: 'close',
             layers: [NO2_2020, pm2p5_2020, pm10_2020]
         }),
         new Group({
-            title: 'Five years difference from 2017 to 2022',
+            title: 'Annual Average Difference 2022 from 5-year Mean',
             fold: 'close',
             layers: [NO2_aad, pm2p5_aad, pm10_aad]
         }),
