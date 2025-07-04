@@ -90,7 +90,35 @@ let pm10_aad = new Image({
     visible: false
 });
 
+// no2 concentration map 2020
+let NO2_2020 = new Image({
+    title: "NO2_2020",
+    source: new ImageWMS({
+        url: 'https://www.gis-geoserver.polimi.it/geoserver/wms',
+        params: { 'LAYERS': 'gisgeoserver_03:rec_France_average_NO2_2020	' }
+    }),
+    visible: false
+});
 
+// pm2p5 concentration map 2020
+let pm2p5_2020 = new Image({
+    title: "pm2p5 _2020",
+    source: new ImageWMS({
+        url: 'https://www.gis-geoserver.polimi.it/geoserver/wms',
+        params: { 'LAYERS': 'gisgeoserver_03:France_pm2p5_concentration_map_2020' }
+    }),
+    visible: false
+});
+
+// pm10 concentration map 2020
+let pm10_2020 = new Image({
+    title: "pm10 _2020",
+    source: new ImageWMS({
+        url: 'https://www.gis-geoserver.polimi.it/geoserver/wms',
+        params: { 'LAYERS': 'gisgeoserver_03:rec_France_average_pm10_2020' }
+    }),
+    visible: false
+});
 
 // Add the layer groups code here:
 let basemapLayers = new Group({
@@ -115,7 +143,7 @@ let overlayLayers = new Group({
         new Group({
             title: 'Annual average concentration',
             fold: 'close',
-            layers: []
+            layers: [NO2_2020, pm2p5_2020, pm10_2020]
         }),
         new Group({
             title: 'Five years difference from 2017 to 2022',
