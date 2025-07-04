@@ -96,20 +96,18 @@
 
 				</div>
 			</div>
+
 			<h3>Yearly Concentration Maps and Health Guidelines</h3>
 			<div class="row gtr-150" style="align-items: center; margin-top: 1em;">
 				<div class="col-5 col-12-medium">
 					<p>
 						Yearly concentration maps are created to represent the annual average levels of air pollutants
 						categorized into standardized classes based on EU air quality guidelines.
-						In this
-						project, all processing was performed entirely in QGIS. After generating the yearly average
-						rasters from monthly data, each map was reclassified into five concentration levels using the
+						After generating the yearly average rasters from monthly data, each map was reclassified into
+						five concentration levels using the
 						“Reclassify by Table” tool.
-						This step allows for a clear and consistent visualization of pollution severity across space and
-						time. The resulting maps help identify areas with critical pollution levels, support comparison
-						across years, and provide a useful basis for environmental assessment and policy evaluation.
-					</p>
+						This step allows a clear and consistent visualization, it also helps in identify areas with
+						critical pollution levels.
 				</div>
 				<div class="col-7 col-12-medium imp-medium">
 					<table class="alt" style="text-align: center;">
@@ -158,81 +156,74 @@
 				</div>
 			</div>
 
-			<div class="row gtr-150">
-				<div class="col-12 col-12-medium">
-					<h3>Annual Average Difference from 5-year Mean</h3>
+			<h3>Annual Average Difference from 5-year Mean</h3>
+			<div class="row gtr-150" style="align-items: center; margin-top: 1em;">
+				<div class="col-5 col-12-medium">
 					<p>
 						It is an indicator that shows how air quality in a specific year deviates from the recent
-						historical average over the past five years. It does
-						this by calculating the difference between the annual average concentration of a pollutant
-						in a given year and the mean concentration during the preceding five-years. This measure is
+						historical average over the past five years. This measure is
 						particularly useful for highlighting short-term trends or anomalies in
-						air quality, as it can reveal unusual changes that may warrant further investigation. For
-						example, it can help identify the impact of extraordinary events or policies, like lockdowns or
-						new environmental regulations, by showing whether pollution levels have improved or worsened
-						compared to the recent past.
+						air quality, as it can reveal unusual changes that may warrant further investigation.
 						Interpreting the results, positive values indicate that pollution levels are higher than the
 						five-year average, suggesting possible deterioration in air
 						quality or exceptional circumstances such as wildfires or increased traffic. Conversely,
 						negative values indicate lower pollution compared to the average, pointing to improvements or
-						temporary reductions often linked to factors like lockdowns or favorable weather conditions. For
+						temporary reductions. For
 						communicating these differences clearly on maps it has been created a diststinct visual style
 						based on these intervals:
-					</p>
-
-					<div class="col-8 col-12-medium offset-2">
-						<table class="air-quality-table">
-							<thead>
-								<tr>
-									<th> </th>
-									<th> NO2 [µg/m³]</th>
-									<th> PM2.5 [µg/m³]</th>
-									<th> PM10 [µg/m³]</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td style="background-color: rgba(7, 22, 240, 0.5);"></td>
-									<td> [aad] ≤ -5 </td>
-									<td> [aad] ≤ -3 </td>
-									<td> [aad] ≤ -10 </td>
-								</tr>
-								<tr>
-									<td style="background-color: rgba(32, 55, 159, 0.5);"></td>
-									<td>-5 < [aad] ≤ -2 </td>
-									<td>-3 < [aad] ≤ -1.5 </td>
-									<td>-10 < [aad] ≤ -4 </td>
-								</tr>
-								<tr>
-									<td style="background-color: rgba(130, 187, 214, 0.5);"></td>
-									<td>-2 < [aad] ≤ 0 </td>
-									<td>-0.5 < [aad] ≤ 0 </td>
-									<td>-4 < [aad] ≤ 0 </td>
-								</tr>
-								<tr>
-									<td style="background-color: rgba(231, 200, 43, 0.449);"></td>
-									<td>0 < [aad] ≤ 2 </td>
-									<td>0 < [aad] ≤ 1.5 </td>
-									<td>0 < [aad] ≤ 4 </td>
-								</tr>
-								<tr>
-									<td style="background-color: rgba(247, 87, 1, 0.764);"></td>
-									<td>2 < [aad] ≤ 5 </td>
-									<td>1.5 < [aad] ≤ 3 </td>
-									<td>4 < [aad] ≤ 10 </td>
-								</tr>
-								<tr>
-									<td style="background-color: rgb(180, 1, 1);"></td>
-									<td> [aad] > 5 </td>
-									<td> [aad] > 3 </td>
-									<td> [aad] > 10 </td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
+				</div>
+				<div class="col-7 col-12-medium imp-medium">
+					<table class="air-quality-table">
+						<thead>
+							<tr>
+								<th> </th>
+								<th> NO2 [µg/m³]</th>
+								<th> PM2.5 [µg/m³]</th>
+								<th> PM10 [µg/m³]</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td style="background-color: rgba(7, 22, 240, 0.5);"></td>
+								<td> [aad] ≤ -5 </td>
+								<td> [aad] ≤ -3 </td>
+								<td> [aad] ≤ -10 </td>
+							</tr>
+							<tr>
+								<td style="background-color: rgba(32, 55, 159, 0.5);"></td>
+								<td>-5 < [aad] ≤ -2 </td>
+								<td>-3 < [aad] ≤ -1.5 </td>
+								<td>-10 < [aad] ≤ -4 </td>
+							</tr>
+							<tr>
+								<td style="background-color: rgba(130, 187, 214, 0.5);"></td>
+								<td>-2 < [aad] ≤ 0 </td>
+								<td>-0.5 < [aad] ≤ 0 </td>
+								<td>-4 < [aad] ≤ 0 </td>
+							</tr>
+							<tr>
+								<td style="background-color: rgba(231, 200, 43, 0.449);"></td>
+								<td>0 < [aad] ≤ 2 </td>
+								<td>0 < [aad] ≤ 1.5 </td>
+								<td>0 < [aad] ≤ 4 </td>
+							</tr>
+							<tr>
+								<td style="background-color: rgba(247, 87, 1, 0.764);"></td>
+								<td>2 < [aad] ≤ 5 </td>
+								<td>1.5 < [aad] ≤ 3 </td>
+								<td>4 < [aad] ≤ 10 </td>
+							</tr>
+							<tr>
+								<td style="background-color: rgb(180, 1, 1);"></td>
+								<td> [aad] > 5 </td>
+								<td> [aad] > 3 </td>
+								<td> [aad] > 10 </td>
+							</tr>
+						</tbody>
+					</table>
 				</div>
 			</div>
-
+			</div>
 
 	</section>
 	<!-- Results -->
