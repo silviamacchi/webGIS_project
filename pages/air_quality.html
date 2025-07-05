@@ -63,40 +63,42 @@
 	<section>
 		<div class="container">
 			<h2><b>Processing</b></h2>
+			<h3>Processing and Visualization of CAMS Air Quality Data Using NetCDF and QGIS</h3>
+
 			<div class="row gtr-150">
 				<div class="col-7 col-12-medium">
-					<h3>Processing and Visualization of CAMS Air Quality Data Using NetCDF and QGIS</h3>
 					<p>
-						The NetCDF (Network Common Data Form) format is a widely adopted standard in atmospheric and
+						The work began by importing the CAMS dataset into QGIS in NetCDF format, which includes hourly
+						pollution data for December 2022. This format is a widely adopted standard in atmospheric and
 						environmental sciences for storing multidimensional scientific datasets, such as time series of
-						pollutant concentrations across spatial grids. It is particularly suitable for handling data
-						from services like CAMS (Copernicus Atmosphere Monitoring Service) due to its efficiency in
-						managing large-scale model outputs and its support for self-describing metadata (e.g., units,
-						variable descriptions).
+						pollutant concentrations across spatial grids. Once loaded as a mesh layer and assigned the
+						correct coordinate system (EPSG:4326), the data could be explored over time, showing how
+						pollutant
+						levels changed hour by hour in the selected area.
 					</p>
 				</div>
 				<div class="col-5 col-12-medium imp-medium">
 					<span class="image fit"><img src="../images/air_quality/01.png" alt="" /></span>
 				</div>
 			</div>
+
 			<div class="row gtr-150" style="align-items: center">
 				<div class="col-5 col-12-medium imp-medium">
 					<span class="image fit"><img src="../images/air_quality/02.png" alt="" /></span>
 				</div>
 				<div class="col-7 col-12-medium">
 					<p>
-						In the context of the project, CAMS NetCDF files were imported and processed in QGIS as mesh
-						layers, which allow for the visualization and manipulation of time-varying geospatial data.
-						After assigning the EPSG:4326 coordinate reference system, the dataset was explored and
-						processed using tools such as the Mesh Calculator to compute monthly average concentrations of
-						selected pollutants. These aggregated datasets were subsequently exported as GeoTIFF raster
-						files, resulting in a series of average concentration maps.
+						To make the dataset easier to work with, the hourly values were then averaged using the Mesh
+						Calculator. This produced a single layer showing the average pollution levels for the whole
+						month. The result will be used for the next steps of the project and so it was exported as
+						GeoTIFF.
 					</p>
 
 				</div>
 			</div>
 
-			<h3 id="yearly-concentration">Yearly Concentration Maps and Health Guidelines</h3>
+
+			<h3>Yearly Concentration Maps and Health Guidelines</h3>
 			<div class="row gtr-150" style="align-items: center; margin-top: 1em;">
 				<div class="col-5 col-12-medium">
 					<p>
@@ -107,6 +109,7 @@
 						“Reclassify by Table” tool.
 						This step allows a clear and consistent visualization, it also helps in identify areas with
 						critical pollution levels.
+					</p>
 				</div>
 				<div class="col-7 col-12-medium imp-medium">
 					<table class="alt" style="text-align: center;">
