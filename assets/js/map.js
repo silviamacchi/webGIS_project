@@ -237,6 +237,17 @@ var stamenWatercolor = new Tile({
         layer: 'stamen_watercolor'
     })
 });
+var cartoDBDarkMatter = new Tile({
+  title: 'CartoDB Dark Matter',
+  type: 'base',
+  visible: true, // Imposta su true se vuoi che sia visibile di default
+  source: new XYZ({
+        attributions: 
+            '© <a href="https://carto.com/">Carto</a> © <a href="https://www.openstreetmap.org/">OpenStreetMap</a>',
+        url: 
+            'https://{a-c}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png'
+  })
+});
 var stamenToner = new Tile({
     title: 'Stamen Toner',
     type: 'base',
@@ -245,7 +256,7 @@ var stamenToner = new Tile({
         layer: 'stamen_toner'
     })
 });
-basemapLayers.getLayers().extend([stamenWatercolor, stamenToner]);
+basemapLayers.getLayers().extend([stamenWatercolor, cartoDBDarkMatter, stamenToner]);
 
 // Add the ESRI XYZ basemaps here:
 var esriTopoBasemap = new Tile({
@@ -274,6 +285,8 @@ var esriWorldImagery = new Tile({
             'World_Imagery/MapServer/tile/{z}/{y}/{x}',
     }),
 });
+
+
 basemapLayers.getLayers().extend([
     esriTopoBasemap, esriWorldImagery
 ]);
