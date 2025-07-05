@@ -319,28 +319,6 @@ closer.onclick = function () {
     return false;
 };
 
-
-// Add the singleclick event code here
-map.on('singleclick', function (event) {
-    var feature = map.forEachFeatureAtPixel(
-        event.pixel, 
-        function (feature, layer) {
-            if(layer == staticGeoJSONLayer){
-                return feature;
-            }
-        }
-    );
-
-    if (feature != null) {
-        var pixel = event.pixel;
-        var coord = map.getCoordinateFromPixel(pixel);
-        popup.setPosition(coord);
-
-        content.innerHTML =
-            '<h5>France administrative boundary</h5><br>';
-    }
-});
-
 // Add the pointermove event code here:
 map.on('pointermove', function(event) {
     var pixel = map.getEventPixel(event.originalEvent);
