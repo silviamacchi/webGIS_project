@@ -2,6 +2,9 @@ import 'ol/ol.css';
 import 'ol-layerswitcher/dist/ol-layerswitcher.css';
 import { Map, View, Overlay } from 'ol';
 import { Tile, Image, Group, Vector } from 'ol/layer';
+import LayerGroup from 'ol/layer/Group';
+import LayerVector from 'ol/layer/Vector';
+import LayerTile from 'ol/layer/Tile'; // added for layer selection/visualization
 import { OSM, ImageWMS, XYZ, StadiaMaps } from 'ol/source';
 import VectorSource from 'ol/source/Vector';
 import { GeoJSON } from 'ol/format';
@@ -143,15 +146,56 @@ let overlayLayers = new Group({
         new Group({
             title: 'Annual average concentration 2020',
             fold: 'close',
+            visible: false,
             layers: [NO2_2020, pm2p5_2020, pm10_2020]
         }),
         new Group({
             title: 'Annual Average Difference 2022 from 5-year Mean',
             fold: 'close',
+            visible: false,
             layers: [NO2_aad, pm2p5_aad, pm10_aad]
         }),
         Land_cover,
     ]
+});
+
+// 3. Funzione per rendere visibile un solo layer alla volta
+function enforceSingleVisibleLayer(changedLayer) {
+  overlayLayers.getLayers().forEach(group => {
+    if (group instanceof LayerGroup) {
+      group.getLayers().forEach(layer => {
+        if (layer !== changedLayer &&
+        !layer.get('excludeFromToggle')) //  skip excluded layers (France boundaries) 
+        {
+          layer.setVisible(false);
+        }
+      });
+    } else {
+      if (group !== changedLayer && !group.get('excludeFromToggle'))
+     {
+        group.setVisible(false);
+      }
+    }
+  });
+}
+
+// 4. Aggiungi listener a ogni layer per gestire la visibilità esclusiva
+overlayLayers.getLayers().forEach(group => {
+  if (group instanceof LayerGroup) {
+    group.getLayers().forEach(layer => {
+      layer.on('change:visible', function () {
+        if (layer.getVisible()) {
+          enforceSingleVisibleLayer(layer);
+        }
+      });
+    });
+  } else {
+    group.on('change:visible', function () {
+      if (group.getVisible()) {
+        enforceSingleVisibleLayer(group);
+      }
+    });
+  }
 });
 
 // Map Initialization
@@ -236,12 +280,14 @@ basemapLayers.getLayers().extend([
 
 // Add the local static GeoJSON layer here:
 let staticGeoJSONSource = new VectorSource({
-    url: '../geojson/France_boundaries.geojson', 
+    url: '../geojson/France_boundaries.geojson',
     format: new GeoJSON()
 });
 let staticGeoJSONLayer = new Vector({
     title: "France boundaries",
     source: staticGeoJSONSource,
+    visible: true,
+    excludeFromToggle: true, // exclude this layer from the layer switcher
     style: new Style({
         fill: new Fill({
             color: "rgba(0, 0, 0, 0)"
@@ -251,6 +297,8 @@ let staticGeoJSONLayer = new Vector({
             color: "rgba(55, 60, 153, 1)"
         })
     })
+    
+    
 });
 overlayLayers.getLayers().push(staticGeoJSONLayer);
 
@@ -260,7 +308,7 @@ var container = document.getElementById('popup');
 var content = document.getElementById('popup-content');
 var closer = document.getElementById('popup-closer');
 var popup = new Overlay({
-    element: container
+    element: container, content: content,
 }); 
 
 map.addOverlay(popup);
@@ -321,7 +369,11 @@ async function updateLegend() {
         } else if (layer.getSource && layer.getSource() instanceof ImageWMS) {
             const layerTitle = layer.get('title');
             localLegendHTML += getLegendElement(layerTitle, null);
-            const legendUrl = layer.getSource().getLegendUrl(); //We get the image legend and show it as a picture
+            const legendUrl = layer.getSource().getLegendUrl(undefined, {
+                                                                        'FORMAT': 'image/png',
+                                                                        'TRANSPARENT': true
+                                                                        }); 
+            //We get the image legend and show it as a picture
             if (legendUrl) {
                 const legendHtml = '<img src="' + legendUrl + '" alt="Legend">';
                 localLegendHTML += legendHtml;
@@ -361,3 +413,5 @@ map.addLayer(basemapLayers);
 map.addLayer(overlayLayers);
 addVisibilityListeners(overlayLayers);
 updateLegend();
+
+
