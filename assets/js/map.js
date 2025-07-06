@@ -240,7 +240,7 @@ var stamenWatercolor = new Tile({
 var cartoDBDarkMatter = new Tile({
   title: 'CartoDB Dark Matter',
   type: 'base',
-  visible: true, // Imposta su true se vuoi che sia visibile di default
+  visible: false,
   source: new XYZ({
         attributions: 
             '© <a href="https://carto.com/">Carto</a> © <a href="https://www.openstreetmap.org/">OpenStreetMap</a>',
