@@ -6,11 +6,11 @@
 -->
 <html>
 	<head>
-		<title>Photon by HTML5 UP</title>
+		<title>GIS Project</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="../assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
+		<link rel="stylesheet" href="/webGIS_project/assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="/webGIS_project/assets/css/noscript.css" /></noscript>
 		<style>
 		</style>
 	</head>
@@ -21,13 +21,13 @@
             <nav>
                 <div class="nav-split">
                     <div class="nav-left">
-                    <a href="../index.html" class="button scrolly">Home</a>
+                    <a href="/webGIS_project/index.html" class="button scrolly">Home</a>
                     </div>
                     <div class="nav-right">
-					<a href="../pages/air_quality.html" class="button scrolly">Air Quality</a>
-                    <a href="../pages/land_cover.html" class="button scrolly">Land Cover</a>
-                    <a href="../pages/pop_exposure.html" class="button scrolly">Population Exposure</a>
-                    <a href="../pages/webgis.html" class="button scrolly">Webgis</a>
+					<a href="/webGIS_project/pages/air_quality.html" class="button scrolly">Air Quality</a>
+                    <a href="/webGIS_project/pages/land_cover.html" class="button scrolly">Land Cover</a>
+                    <a href="/webGIS_project/pages/pop_exposure.html" class="button scrolly">Population Exposure</a>
+                    <a href="/webGIS_project/pages/webgis.html" class="button scrolly">Webgis</a>
                     </div>
                 </div>
             </nav>
@@ -50,15 +50,15 @@
 				<h3>Health Guidelines - EEA</h3>
                 	<p> 
                         The European Environment Agency (EEA) has set health guidelines for air pollutants to protect human health and the environment. 
-                        The EU reports theirs annual concentration map according to concentration levels of NO2, PM2.5 and PM10:
-                    </p>
+                        The EU reports their annual concentration maps according to concentration levels of NO<sub>2</sub>, PM2.5 and PM10:
+                    </p> 
                 </div>
                 <div class="col-7 col-12-medium imp-medium">
                 <table class="alt" style="text-align: center;">
 							<thead>
 								<tr>
 									<th style="width: 30%; text-align: center; vertical-align: middle;">Concentration levels</th>
-									<th style="text-align: center; vertical-align: middle;">NO2 [µg/m³]</th>
+									<th style="text-align: center; vertical-align: middle;">NO<sub>2</sub> [µg/m³]</th>
                                     <th style="text-align: center; vertical-align: middle;">PM2.5 [µg/m³]</th>
                                     <th style="text-align: center; vertical-align: middle;">PM10 [µg/m³]</th>
 								</tr>
@@ -112,18 +112,18 @@
 						</p>
 					</div>
 					<div class="col-5 col-12-medium imp-medium">
-						<span class="image fit"><img src="../images/Pop_exposure/pop2020.png" alt="" /></span>
+						<span class="image fit"><img src="/webGIS_project/images/Pop_exposure/pop2020.png" alt="" /></span>
 					</div>
 				</div>
 				<div class="row gtr-150" style="align-items: center">
 					<div class="col-5 col-12-medium imp-medium">
-						<span class="image fit"><img src="../images/Pop_exposure/pop_quantile.png" alt="" /></span>
+						<span class="image fit"><img src="/webGIS_project/images/Pop_exposure/pop_quantile.png" alt="" /></span>
 					</div>
 					<div class="col-7 col-12-medium">
 						<h3>Reclassification in 5 classes</h3>
-						<p>In order to obtain a bivariate map, we need to reclassify it into 5 broader classes the population map.</p>
+						<p>In order to obtain a bivariate map, we need to reclassify the population map into 5 broader classes.</p>
 						<br/>
-						<p>The reclassification is done by dividing the population based on the respective quantiles
+						<p>The reclassification is done by dividing the population based on 5 quantiles.
 						</p>
 					</div>
 
@@ -132,10 +132,10 @@
 				<h3>Bivariate map data</h3>
 				<div class="row gtr-150">
 					<p>To visualize a bivariate map we need in input both the population map and the pollutant concentration of 2020,
-					divided in 5 classes, that we obtained in the Pollutant page.
+					divided in 5 classes, that we obtained in the Air Quality page.
 					</p>
 					<ul class="actions special">
-						<li><a href="../pages/air_quality.html#yearly-concentration" class="button">See how we obtained the yearly average</a></li>
+						<li><a href="/webGIS_project/pages/air_quality.html#yearly-concentration" class="button">See how we obtained the yearly average</a></li>
 					</ul>
 				<div class="col-6 col-12-medium">
 				<p>Using the GAUL L2 data, obtained from <a href="https://data.apps.fao.org/catalog/dataset/b0634117-37c0-4125-ad87-89cb9aec4eea">FAO Gaul</a>,
@@ -211,37 +211,37 @@
 				<p>Here we can visualize the bivariate maps obtained, that're related to the exposure of each pollutant for the year 2020.</p>
 				<div class="row gtr-150 align-center">
 					<div class="col-4 col-12-medium imp-medium">
-						<p>Bivariate NO2</p>
-						<span class="image fit "><img src="../images/Pop_exposure/no2_bivariate.png" alt="" /></span>
+						<p>Bivariate NO<sub>2</sub></p>
+						<span class="image fit "><img src="/webGIS_project/images/Pop_exposure/no2_bivariate.png" alt="" /></span>
 					</div>
 					<div class="col-4 col-12-medium imp-medium">
 						<p>Bivariate PM 2.5</p>
-						<span class="image fit"><img src="../images/Pop_exposure/pm2p5_bivariate.png" alt="" /></span>
+						<span class="image fit"><img src="/webGIS_project/images/Pop_exposure/pm2p5_bivariate.png" alt="" /></span>
 					</div>
 					<div class="col-4 col-12-medium imp-medium">
 						<p>Bivariate PM 10</p>
-						<span class="image fit"><img src="../images/Pop_exposure/pm10_bivariate.png" alt="" /></span>
+						<span class="image fit"><img src="/webGIS_project/images/Pop_exposure/pm10_bivariate.png" alt="" /></span>
 					</div>
 				</div>
 				<p> We can also visualize the result with a pie plot, that represents the percentage of the population 
 					exposed to the different categories of air pollutant concentrations.</p>
 				<div class="row gtr-150 align-center">
 					<div class="col-4 col-12-medium imp-medium">
-						<p style="position: relative; z-index: 10;">Exposure to NO2</p>
+						<p style="position: relative; z-index: 10;">Exposure to NO<sub>2</sub></p>
 						<span class="image fit" style="margin-top: -75px;">
-						<iframe src="../images/Pop_exposure/pie_charts/no2.html" frameborder="0" scrolling="no" width="100%" height="350px"></iframe>
+						<iframe src="/webGIS_project/images/Pop_exposure/pie_charts/no2.html" frameborder="0" scrolling="no" width="100%" height="350px"></iframe>
     					</span>
 					</div>
 					<div class="col-4 col-12-medium imp-medium">
 						<p style="position: relative; z-index: 10;">Exposure to PM 2.5</p>
 						<span class="image fit" style="margin-top: -75px;">
-						<iframe src="../images/Pop_exposure/pie_charts/pm2p5.html" frameborder="0" scrolling="no" width="100%" height="350px"></iframe>
+						<iframe src="/webGIS_project/images/Pop_exposure/pie_charts/pm2p5.html" frameborder="0" scrolling="no" width="100%" height="350px"></iframe>
     					</span>
 					</div>
 					<div class="col-4 col-12-medium imp-medium">
 						<p style="position: relative; z-index: 10;">Exposure to PM 10</p>
 						<span class="image fit" style="margin-top: -75px;">
-						<iframe src="../images/Pop_exposure/pie_charts/pm10.html" frameborder="0" scrolling="no" width="100%" height="350px"></iframe>
+						<iframe src="/webGIS_project/images/Pop_exposure/pie_charts/pm10.html" frameborder="0" scrolling="no" width="100%" height="350px"></iframe>
     					</span>
 					</div>
 				</div>
@@ -262,17 +262,13 @@
 			<br>
 		</div>
 <!-- Footer -->
-		<section id="footer">
-			<ul class="icons">
-				<li><a href="#" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
-				<li><a href="#" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
-				<li><a href="#" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
-				<li><a href="#" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
-				<li><a href="#" class="icon solid alt fa-envelope"><span class="label">Email</span></a></li>
-			</ul>
-			<ul class="copyright">
-				<li>&copy; Untitled</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-			</ul>
-		</section>
+			<section id="footer">
+				<ul class="icons" >
+					<li><a href="https://github.com/silviamacchi/webGIS_project" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+				</ul>
+				<ul class="copyright">
+					<li>GIS project 2024/2025</li><li>Developed by: Sveva Zanetti, Silvia Macchi, Giovanni Pasut</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+				</ul>
+			</section>
 	</body>
 </html>

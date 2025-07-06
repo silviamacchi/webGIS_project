@@ -144,16 +144,16 @@ let overlayLayers = new Group({
             ]
         }),
         new Group({
-            title: 'Annual average concentration 2020',
-            fold: 'close',
-            visible: false,
-            layers: [NO2_2020, pm2p5_2020, pm10_2020]
-        }),
-        new Group({
             title: 'Annual Average Difference 2022 from 5-year Mean',
             fold: 'close',
             visible: false,
             layers: [NO2_aad, pm2p5_aad, pm10_aad]
+        }),
+        new Group({
+            title: 'Annual average concentration 2020',
+            fold: 'close',
+            visible: false,
+            layers: [NO2_2020, pm2p5_2020, pm10_2020]
         }),
         Land_cover,
     ]
@@ -240,7 +240,7 @@ var stamenWatercolor = new Tile({
 var cartoDBDarkMatter = new Tile({
   title: 'CartoDB Dark Matter',
   type: 'base',
-  visible: true, // Imposta su true se vuoi che sia visibile di default
+  visible: false,
   source: new XYZ({
         attributions: 
             '© <a href="https://carto.com/">Carto</a> © <a href="https://www.openstreetmap.org/">OpenStreetMap</a>',
