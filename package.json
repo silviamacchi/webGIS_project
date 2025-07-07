@@ -6,7 +6,7 @@
     "start": "vite --base=./",
     "build-production": "vite build --base=/webGIS_project/",
     "build-local": "vite build",
-    "preview": "vite preview --base=/webGIS_project/"  //to publish from /docs
+    "preview": "vite preview --base=/webGIS_project/"  
   },
   "author": "",
   "license": "CC0-1.0",
