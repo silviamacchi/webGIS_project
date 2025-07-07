@@ -6,15 +6,13 @@
 -->
 <html>
 	<head>
-		<title>GIS Project</title>
+		<title>My WebGIS</title>
 		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	
-		<noscript></noscript>
-		<style>
-		</style>
-		<link rel="stylesheet" crossorigin href="/assets/bootstrap-CSWwnEJb.css">
-		<link rel="stylesheet" crossorigin href="/assets/noscript-C_DQ2KmX.css">
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+		
+		<link rel="stylesheet" href="../assets/css/main.css" />
+		<link rel="stylesheet" href="../assets/css/custom-styles.css" />
 	</head>
 
     <body class="is-preload">
@@ -26,10 +24,10 @@
                     <a href="../index.html" class="button scrolly">Home</a>
                     </div>
                     <div class="nav-right">
-					<a href="../pages/air_quality.html" class="button scrolly">Air Quality</a>
-                    <a href="../pages/land_cover.html" class="button scrolly">Land Cover</a>
-                    <a href="../pages/pop_exposure.html" class="button scrolly">Population Exposure</a>
-                    <a href="../pages/webgis.html" class="button scrolly">Webgis</a>
+					<a href="air_quality.html" class="button scrolly">Air Quality</a>
+                    <a href="land_cover.html" class="button scrolly">Land Cover</a>
+                    <a href="pop_exposure.html" class="button scrolly">Population Exposure</a>
+                    <a href="webgis.html" class="button scrolly">Webgis</a>
                     </div>
                 </div>
             </nav>
@@ -114,12 +112,12 @@
 						</p>
 					</div>
 					<div class="col-5 col-12-medium imp-medium">
-						<span class="image fit"><img src="/assets/pop2020-RsAfy0gi.png" alt="" /></span>
+						<span class="image fit"><img src="../images/Pop_exposure/pop2020.png" alt="" /></span>
 					</div>
 				</div>
 				<div class="row gtr-150" style="align-items: center">
 					<div class="col-5 col-12-medium imp-medium">
-						<span class="image fit"><img src="/assets/pop_quantile-DG_m6cGb.png" alt="" /></span>
+						<span class="image fit"><img src="../images/Pop_exposure/pop_quantile.png" alt="" /></span>
 					</div>
 					<div class="col-7 col-12-medium">
 						<h3>Reclassification in 5 classes</h3>
@@ -137,7 +135,7 @@
 					divided in 5 classes, that we obtained in the Air Quality page.
 					</p>
 					<ul class="actions special">
-						<li><a href="../pages/air_quality.html#yearly-concentration" class="button">See how we obtained the yearly average</a></li>
+						<li><a href="air_quality.html#yearly-concentration" class="button">See how we obtained the yearly average</a></li>
 					</ul>
 				<div class="col-6 col-12-medium">
 				<p>Using the GAUL L2 data, obtained from <a href="https://data.apps.fao.org/catalog/dataset/b0634117-37c0-4125-ad87-89cb9aec4eea">FAO Gaul</a>,
@@ -214,15 +212,15 @@
 				<div class="row gtr-150 align-center">
 					<div class="col-4 col-12-medium imp-medium">
 						<p>Bivariate NO<sub>2</sub></p>
-						<span class="image fit "><img src="/assets/no2_bivariate-Cg-4WX_p.png" alt="" /></span>
+						<span class="image fit "><img src="../images/Pop_exposure/no2_bivariate.png" alt="" /></span>
 					</div>
 					<div class="col-4 col-12-medium imp-medium">
 						<p>Bivariate PM 2.5</p>
-						<span class="image fit"><img src="/assets/pm2p5_bivariate-CdVPXsZh.png" alt="" /></span>
+						<span class="image fit"><img src="../images/Pop_exposure/pm2p5_bivariate.png" alt="" /></span>
 					</div>
 					<div class="col-4 col-12-medium imp-medium">
 						<p>Bivariate PM 10</p>
-						<span class="image fit"><img src="/assets/pm10_bivariate-CzBbDTCA.png" alt="" /></span>
+						<span class="image fit"><img src="../images/Pop_exposure/pm10_bivariate.png" alt="" /></span>
 					</div>
 				</div>
 				<p> We can also visualize the result with a pie plot, that represents the percentage of the population 
@@ -254,7 +252,7 @@
 			<section id="footer" style="height: 120px;">
 				<div class="container">
 					<ul class="actions special">
-						<li><a href="../pages/webgis.html" class="button wide primary">Next step: Webgis</a></li>
+						<li><a href="webgis.html" class="button wide primary">Next step: Webgis</a></li>
 					</ul>
 				</div>
 			</section>
@@ -272,6 +270,7 @@
 					<li>GIS project 2024/2025</li><li>Developed by: Sveva Zanetti, Silvia Macchi, Giovanni Pasut</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
 				</ul>
 			</section>
+			
 		<!-- Scripts -->
 			<script src="/js/jquery.min.js"></script>
 			<script src="/js/jquery.dropotron.min.js"></script>

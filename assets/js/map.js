@@ -390,5 +390,3 @@ map.addLayer(basemapLayers);
 map.addLayer(overlayLayers);
 addVisibilityListeners(overlayLayers);
 updateLegend();
-
-
