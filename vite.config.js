@@ -16,7 +16,7 @@ export default {
 
         // The name of the folder to which the build is stored.
         // As the folder that github pages expects is /docs, we export to /docs folder.
-        outDir: './',  //changed from 'docs' to 'root'
+        outDir: 'docs',  //changed from 'docs' to 'root'
 
         // This builds the dependencies and bundles using the different imports from the pages.
         // It uses index.html as the main entrypoint.
