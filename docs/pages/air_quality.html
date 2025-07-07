@@ -1,0 +1,308 @@
+<!DOCTYPE HTML>
+<!--
+	Photon by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+
+<head>
+	<title>GIS Project</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	
+		
+	<noscript></noscript>
+	<style>
+	</style>
+  <link rel="stylesheet" crossorigin href="/assets/bootstrap-CSWwnEJb-CSWwnEJb.css">
+  <link rel="stylesheet" crossorigin href="/assets/noscript-C_DQ2KmX-CWuogHJy.css">
+</head>
+
+<body class="is-preload">
+	<!-- Header -->
+	<header id="header" style="padding-top: 2rem;">
+		<nav>
+			<div class="nav-split">
+				<div class="nav-left">
+					<a href="../index.html" class="button scrolly">Home</a>
+				</div>
+				<div class="nav-right">
+					<a href="../pages/air_quality.html" class="button scrolly">Air Quality</a>
+					<a href="../pages/land_cover.html" class="button scrolly">Land Cover</a>
+					<a href="../pages/pop_exposure.html" class="button scrolly">Population Exposure</a>
+					<a href="../pages/webgis.html" class="button scrolly">Webgis</a>
+				</div>
+			</div>
+		</nav>
+	</header>
+	<!-- Aim -->
+	<section id="one" class="main style1">
+		<header class="major special">
+			<h1>Air Quality</h1>
+		</header>
+		<div class="container">
+			<section>
+				<h2><b>Aim</b></h2>
+				<p>
+					The aim of this project is to analyze the spatial and temporal patterns of air pollution for NO<sub>2</sub>,
+					PM2.5, and PM10 over France using CAMS reanalysis data. Data in NetCDF format
+					are processed and visualized through QGIS by converting them into raster layers using the native
+					mesh layer functionalities. The project culminates in the creation of average concentration maps for
+					each pollutant, which enable the evaluation of air quality trends and the identification of critical
+					areas in relation to current EU air quality standards.
+					<br />
+					We will use land the multi-temporal air quality data (Jan 2013 to Dec 2022) from <a
+						href="https://ads.atmosphere.copernicus.eu/datasets/cams-europe-air-quality-reanalyses?tab=overview">CAMS
+						Reanalysis Data </a>.
+
+				</p>
+			</section>
+		</div>
+	</section>
+	<!-- Processing -->
+	<section>
+		<div class="container">
+			<h2><b>Processing</b></h2>
+			<div class="row gtr-150">
+				<div class="col-7 col-12-medium">
+					<h3>Processing and Visualization of CAMS Air Quality Data Using NetCDF and QGIS</h3>
+					<p>
+						The NetCDF (Network Common Data Form) format is a widely adopted standard in atmospheric and
+						environmental sciences for storing multidimensional scientific datasets, such as time series of
+						pollutant concentrations across spatial grids. It is particularly suitable for handling data
+						from services like CAMS (Copernicus Atmosphere Monitoring Service) due to its efficiency in
+						managing large-scale model outputs and its support for self-describing metadata (e.g., units,
+						variable descriptions).
+					</p>
+				</div>
+				<div class="col-5 col-12-medium imp-medium">
+					<span class="image fit"><img src="/assets/01-D0rmZhz0-D0rmZhz0.png" alt="" /></span>
+				</div>
+			</div>
+			<div class="row gtr-150" style="align-items: center">
+				<div class="col-5 col-12-medium imp-medium">
+					<span class="image fit"><img src="/assets/02-Bn31mhQ7-Bn31mhQ7.png" alt="" /></span>
+				</div>
+				<div class="col-7 col-12-medium">
+					<p>
+						In the context of the project, CAMS NetCDF files were imported and processed in QGIS as mesh
+						layers, which allow for the visualization and manipulation of time-varying geospatial data.
+						After assigning the EPSG:4326 coordinate reference system, the dataset was explored and
+						processed using tools such as the Mesh Calculator to compute monthly average concentrations of
+						selected pollutants. These aggregated datasets were subsequently exported as GeoTIFF raster
+						files, resulting in a series of average concentration maps.
+					</p>
+
+				</div>
+			</div>
+
+			<h3 id="yearly-concentration">Yearly Concentration Maps and Health Guidelines</h3>
+			<div class="row gtr-150" style="align-items: center; margin-top: 1em;">
+				<div class="col-5 col-12-medium">
+					<p>
+						Yearly concentration maps are created to represent the annual average levels of air pollutants
+						categorized into standardized classes based on EU air quality guidelines.
+						After generating the yearly average rasters from monthly data, each map was reclassified into
+						five concentration levels using the
+						“Reclassify by Table” tool.
+						This step allows a clear and consistent visualization, it also helps in identify areas with
+						critical pollution levels.
+				</div>
+				<div class="col-7 col-12-medium imp-medium">
+					<table class="alt" style="text-align: center;">
+						<thead>
+							<tr>
+								<th style="width: 30%; text-align: center; vertical-align: middle;">Concentration levels
+								</th>
+								<th style="text-align: center; vertical-align: middle;">NO₂ [µg/m³]</th>
+								<th style="text-align: center; vertical-align: middle;">PM2.5 [µg/m³]</th>
+								<th style="text-align: center; vertical-align: middle;">PM10 [µg/m³]</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td style="background-color: rgba(130, 187, 214, 0.5);">1</td>
+								<td>[c] &le; 10</td>
+								<td>[c] &le; 5</td>
+								<td>[c] &le; 15</td>
+							</tr>
+							<tr>
+								<td style="background-color: rgba(64, 81, 179, 0.5);">2</td>
+								<td>10 &lt; [c] &le; 25</td>
+								<td>5 &lt; [c] &le; 10</td>
+								<td>15 &lt; [c] &le; 30</td>
+							</tr>
+							<tr>
+								<td style="background-color: rgba(215, 234, 41, 0.5);">3</td>
+								<td>25 &lt; [c] &le; 40</td>
+								<td>10 &lt; [c] &le; 20</td>
+								<td>30 &lt; [c] &le; 40</td>
+							</tr>
+							<tr>
+								<td style="background-color: rgba(211, 95, 37, 0.5);">4</td>
+								<td>40 &lt; [c] &le; 50</td>
+								<td>20 &lt; [c] &le; 25</td>
+								<td>40 &lt; [c] &le; 50</td>
+							</tr>
+							<tr>
+								<td style="background-color: rgba(208, 26, 26, 0.5);">5</td>
+								<td>[c] &gt; 50</td>
+								<td>[c] &gt; 25</td>
+								<td>[c] &gt; 50</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+			<h3>Annual Average Difference from 5-year Mean</h3>
+			<div class="row gtr-150" style="align-items: center; margin-top: 1em;">
+				<div class="col-5 col-12-medium">
+					<p>
+						It is an indicator that shows how air quality in a specific year deviates from the recent
+						historical average over the past five years. This measure is
+						particularly useful for highlighting short-term trends or anomalies in
+						air quality, as it can reveal unusual changes that may warrant further investigation.
+						Interpreting the results, positive values indicate that pollution levels are higher than the
+						five-year average, suggesting possible deterioration in air
+						quality or exceptional circumstances such as wildfires or increased traffic. Conversely,
+						negative values indicate lower pollution compared to the average. For
+						communicating these differences clearly on maps it has been created a diststinct visual style
+						based on these intervals:
+				</div>
+				<div class="col-7 col-12-medium imp-medium">
+					<table class="alt" style="text-align: center;">
+						<thead>
+							<th style="width: 30%; text-align: center; vertical-align: middle;"></th>
+							<th style="text-align: center; vertical-align: middle;">NO₂ [µg/m³]</th>
+							<th style="text-align: center; vertical-align: middle;">PM2.5 [µg/m³]</th>
+							<th style="text-align: center; vertical-align: middle;">PM10 [µg/m³]</th>
+
+						</thead>
+						<tbody>
+							<tr>
+								<td style="background-color: rgba(7, 22, 240, 0.5);"></td>
+								<td> [aad] &le; -5 </td>
+								<td> [aad] &le; -3 </td>
+								<td> [aad] &le; -10 </td>
+							</tr>
+							<tr>
+								<td style="background-color: rgba(32, 55, 159, 0.5);"></td>
+								<td>-5 &lt; [aad] &le; -2 </td>
+								<td>-3 &lt; [aad] &le; -1.5 </td>
+								<td>-10 &lt; [aad] &le; -4 </td>
+							</tr>
+							<tr>
+								<td style="background-color: rgba(130, 187, 214, 0.5);"></td>
+								<td>-2 &lt; [aad] &le; 0 </td>
+								<td>-0.5 &lt; [aad] &le; 0 </td>
+								<td>-4 &lt; [aad] &le; 0 </td>
+							</tr>
+							<tr>
+								<td style="background-color: rgba(231, 200, 43, 0.449);"></td>
+								<td>0 &lt; [aad] &le; 2 </td>
+								<td>0 &lt; [aad] &le; 1.5 </td>
+								<td>0 &lt; [aad] &le; 4 </td>
+							</tr>
+							<tr>
+								<td style="background-color: rgba(247, 87, 1, 0.764);"></td>
+								<td>2 &lt; [aad] &le; 5 </td>
+								<td>1.5 &lt; [aad] &le; 3 </td>
+								<td>4 &lt; [aad] &le; 10 </td>
+							</tr>
+							<tr>
+								<td style="background-color: rgb(180, 1, 1);"></td>
+								<td> [aad] &gt; 5 </td>
+								<td> [aad] &gt; 3 </td>
+								<td> [aad] &gt; 10 </td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+
+	</section>
+	<!-- Results -->
+	<section>
+		<div class="container">
+			<section id="one" class="main style1">
+				<h2><b>Results</b></h2>
+				<p>These are the yearly concentration maps from the past ten years, classified according to European
+					health guidelines:</p>
+				<div class="row gtr-150 align-center">
+					<div class="col-4 col-12-medium imp-medium">
+						<p>Annual Average NO<sub>2</sub></p>
+						<span class="image fit "><img src="/assets/gifNO2-Bkg0VCoO-Bkg0VCoO.gif" alt="" /></span>
+					</div>
+					<div class="col-4 col-12-medium imp-medium">
+						<p>Annual Average PM 2.5</p>
+						<span class="image fit"><img src="/assets/gifPM25-BL5snDnV-BL5snDnV.gif" alt="" /></span>
+					</div>
+					<div class="col-4 col-12-medium imp-medium">
+						<p>Annual Average PM 10</p>
+						<span class="image fit"><img src="/assets/gifPM10-DGaFGgBq-DGaFGgBq.gif" alt="" /></span>
+					</div>
+				</div>
+				<p>And below there are the visualizations of the annual average difference for each pollutant. They are
+					computed for the year 2022, using the five-year mean from 2017 to 2021 as a baseline.
+				</p>
+
+				<div class="row gtr-150 align-center">
+					<div class="col-4 col-12-medium imp-medium">
+						<p>NO<sub>2</sub></p>
+						<span class="image fit "><img src="/assets/04-5R5ctvP5-5R5ctvP5.png" alt="" /></span>
+					</div>
+					<div class="col-4 col-12-medium imp-medium">
+						<p>PM 2.5</p>
+						<span class="image fit "><img src="/assets/05-DT1ZshPX-DT1ZshPX.png" alt="" /></span>
+					</div>
+					<div class="col-4 col-12-medium imp-medium">
+						<p>PM 10</p>
+						<span class="image fit"><img src="/assets/06-uIYubB23-uIYubB23.png" alt="" /></span>
+					</div>
+				</div>
+
+				<p>
+					Overall, the analysis shows a clear improvement in NO<sub>2</sub> concentrations across most of France, likely
+					reflecting the impact of reduced traffic emissions or environmental regulations. In contrast, PM 2.5
+					levels have increased in several regions, especially in the southeast, and also PM10 concentrations
+					show
+					an increase in most of the areas. These
+					patterns highlight the importance of continuous monitoring and targeted air quality policies.
+				</p>
+			</section>
+		</div>
+		<div class="container">
+			<section>
+				<ul class="actions special">
+					<li><a href="../pages/land_cover.html" class="button">Next step: land cover</a></li>
+				</ul>
+			</section>
+		</div>"
+	</section>
+	<!-- Footer -->
+	<section id="footer">
+			<section id="footer">
+				<ul class="icons" >
+					<li><a href="https://github.com/silviamacchi/webGIS_project" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+				</ul>
+				<ul class="copyright">
+					<li>GIS project 2024/2025</li><li>Developed by: Sveva Zanetti, Silvia Macchi, Giovanni Pasut</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+				</ul>
+			</section>
+	</section>
+		<!-- Scripts -->
+			<script src="/js/jquery.min.js"></script>
+			<script src="/js/jquery.dropotron.min.js"></script>
+			<script src="/js/jquery.scrolly.min.js"></script>
+			<script src="/js/jquery.scrollex.min.js"></script>
+			<script src="/js/browser.min.js"></script>
+			<script src="/js/breakpoints.min.js"></script>
+			<script src="/js/util.js"></script>
+			<script src="/js/main.js"></script>
+			
+</body>
+
+</html>
