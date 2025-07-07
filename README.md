@@ -39,13 +39,7 @@ https://github.com/Diuke
 
 Attributions for basemaps:
 
-© Stadia Maps - https://stadiamaps.com/
-
-© OpenMapTiles - https://openmaptiles.org/
-
 © OpenStreetMap - https://www.openstreetmap.org/copyright
-
-© Stamen Design - https://stamen.com/
 
 © CartoDB Dark Matter - https://carto.com/
 
