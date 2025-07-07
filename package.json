@@ -6,14 +6,14 @@
     "start": "vite --base=./",
     "build-production": "vite build --base=/webGIS_project/",
     "build-local": "vite build",
-    "preview": "vite preview --base=./"  
+    "preview": "vite preview --base=./"
   },
   "author": "",
   "license": "CC0-1.0",
   "dependencies": {
     "bootstrap": "5.3.3",
     "glob": "10.3.10",
-    "ol": "8.2.0",
+    "ol": "^8.2.0",
     "ol-layerswitcher": "4.1.1"
   },
   "devDependencies": {
