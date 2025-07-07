@@ -9,8 +9,8 @@
 		<title>GIS Project</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="../assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
+		<link rel="stylesheet" crossorigin href="/webGIS_project/assets/css/main.css" />
+		<noscript><link rel="stylesheet" crossorigin href="/webGIS_project/assets/css/noscript.css" /></noscript>
 		<style>
 		</style>
 	</head>
@@ -20,16 +20,16 @@
         <header id="header" style="padding-top: 2rem;">
             <nav>
                 <div class="nav-split">
-                    <div class="nav-left">
-                    <a href="../index.html" class="button scrolly">Home</a>
-                    </div>
-                    <div class="nav-right">
-					<a href="../pages/air_quality.html" class="button scrolly">Air Quality</a>
-                    <a href="../pages/land_cover.html" class="button scrolly">Land Cover</a>
-					<a href="../pages/pop_exposure.html" class="button scrolly">Population Exposure</a>
-                    <a href="../pages/webgis.html" class="button scrolly">Webgis</a>
-                    </div>
-                </div>
+					<div class="nav-left">
+						<li class="current"><a href="../index.html" class="button scrolly">Home</a></li>
+					</div>
+					<div class="nav-right">
+						<li class="current"><a href="air_quality.html" class="button scrolly">Air Quality</a></li>
+						<li class="current"><a href="land_cover.html" class="button scrolly">Land Cover</a></li>
+						<li class="current"><a href="pop_exposure.html" class="button scrolly">Population Exposure</a></li>
+						<li class="current"><a href="webgis.html" class="button scrolly">Webgis</a></li>
+					</div>
+				</div>
             </nav>
         </header>
 <!-- Aim -->
@@ -113,7 +113,7 @@
 				<p>Once we reclassified the land cover data, we needed to combine them with air quality data. 
 					We used the annual average concentration for each pollutant from 2013 to 2022 that we obtained in the Pollutant page  <br/></p>
 					<ul class="actions special">
-								<li><a href="/webGIS_project/pages/air_quality.html#yearly-concentration" class="button">See how we obtained the yearly averages</a></li>
+								<li class="current"><a href="air_quality.html#yearly-concentration" class="button">See how we obtained the yearly averages</a></li>
 							</ul>
 				<p>Since the land cover data has a resolution of 300 m and air quality data has a resolution of 10 km, we resampled air quality data to match the resolution of land cover. </p>
 				<div class="row gtr-150 center-cols align-center">
