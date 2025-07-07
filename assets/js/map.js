@@ -228,15 +228,8 @@ map.addControl(
 var layerSwitcher = new LayerSwitcher({});
 map.addControl(layerSwitcher);
 
-// Add the Stadia Basemaps here:
-var stamenWatercolor = new Tile({
-    title: 'Stamen Watercolor',
-    type: 'base',
-    visible: false,
-    source: new StadiaMaps({
-        layer: 'stamen_watercolor'
-    })
-});
+// Add the CartoDB basemap here:
+
 var cartoDBDarkMatter = new Tile({
   title: 'CartoDB Dark Matter',
   type: 'base',
@@ -248,15 +241,8 @@ var cartoDBDarkMatter = new Tile({
             'https://{a-c}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png'
   })
 });
-var stamenToner = new Tile({
-    title: 'Stamen Toner',
-    type: 'base',
-    visible: false,
-    source: new StadiaMaps({
-        layer: 'stamen_toner'
-    })
-});
-basemapLayers.getLayers().extend([stamenWatercolor, cartoDBDarkMatter, stamenToner]);
+
+basemapLayers.getLayers().extend([cartoDBDarkMatter]);
 
 // Add the ESRI XYZ basemaps here:
 var esriTopoBasemap = new Tile({
