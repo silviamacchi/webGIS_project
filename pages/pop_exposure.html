@@ -42,7 +42,7 @@
 				<h2><b>Aim</b></h2>
 				<p>
 					The aim of the following analysis is to analyse the population exposure to air pollution, emphasizing areas with pollutant 
-                    exceedances relative to Health guidelines over France. To better highlight the correlation we will use the bivariate map, and a corresponding pie-chart. 	
+                    exceedances relative to Health guidelines over France. To better highlight the correlation we will use the bivariate map obtained for each pollutant, and the corresponding pie-charts. 	
 				</p></br>
 
                 <div class="row gtr-150">
@@ -50,7 +50,9 @@
 				<h3>Health Guidelines - EEA</h3>
                 	<p> 
                         The European Environment Agency (EEA) has set health guidelines for air pollutants to protect human health and the environment. 
-                        The EU reports their annual concentration maps according to concentration levels of NO<sub>2</sub>, PM2.5 and PM10:
+                        The EU reports their annual concentration maps according to concentration levels of NO<sub>2</sub>, PM2.5 and PM10.</br>
+						This map had been used 
+
                     </p> 
                 </div>
                 <div class="col-7 col-12-medium imp-medium">
@@ -123,7 +125,7 @@
 						<h3>Reclassification in 5 classes</h3>
 						<p>In order to obtain a bivariate map, we need to reclassify the population map into 5 broader classes.</p>
 						<br/>
-						<p>The reclassification is done by dividing the population based on 5 quantiles.
+						<p>The reclassification is done by dividing the population based on quantile mode, that is, by dividing data into classes so that each class has an equal number of features.
 						</p>
 					</div>
 
@@ -131,7 +133,7 @@
 				
 				<h3>Bivariate map data</h3>
 				<div class="row gtr-150">
-					<p>To visualize a bivariate map we need in input both the population map and the pollutant concentration of 2020,
+					<p>To visualize a bivariate map we need in input both the population map and the annual average concentration of 2020 for each pollutant,
 					divided in 5 classes, that we obtained in the Air Quality page.
 					</p>
 					<ul class="actions special">
@@ -223,7 +225,7 @@
 						<span class="image fit"><img src="../images/Pop_exposure/pm10_bivariate.png" alt="" /></span>
 					</div>
 				</div>
-				<p> We can also visualize the result with a pie plot, that represents the percentage of the population 
+				<p> We can also visualize the result with a pie plot, that shows the percentage of the population 
 					exposed to the different categories of air pollutant concentrations.</p>
 				<div class="row gtr-150 align-center">
 					<div class="col-4 col-12-medium imp-medium">
@@ -244,8 +246,9 @@
 						<iframe src="../piecharts/pm10.html" frameborder="0" scrolling="no" width="100%" height="350px"></iframe>
     					</span>
 					</div>
-				</div>
 				</section>
+				<p>This shows that the highest concentration levels are reached for PM 2.5 exposure, probably because PM 2.5 has a smaller diameter with respect to PM 10, and therefore remains in the atmosphere longer.</div>
+				
 			</div>
 		</section>
 		<div class="container">
