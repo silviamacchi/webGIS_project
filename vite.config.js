@@ -11,6 +11,7 @@ export default {
 
     // Options for the build command
     build: {
+        base: '/webGIS_project/',
         // This is the target build language.
         target: "ES2022",
 
