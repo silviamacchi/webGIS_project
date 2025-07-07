@@ -8,11 +8,13 @@
 	<head>
 		<title>GIS Project</title>
 		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" crossorigin href="/webGIS_project/assets/css/main.css" />
-		<noscript><link rel="stylesheet" crossorigin href="/webGIS_project/assets/css/noscript.css" /></noscript>
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	
+		<noscript></noscript>
 		<style>
 		</style>
+		<link rel="stylesheet" crossorigin href="/webGIS_project/assets/bootstrap-CSWwnEJb.css">
+		<link rel="stylesheet" crossorigin href="/webGIS_project/assets/noscript-CpCuB29a.css">
 	</head>
 
     <body class="is-preload">
@@ -24,10 +26,10 @@
                     <a href="../index.html" class="button scrolly">Home</a>
                     </div>
                     <div class="nav-right">
-					<li class="current"><a href="air_quality.html" class="button scrolly">Air Quality</a></li>
-                    <li class="current"><a href="land_cover.html" class="button scrolly">Land Cover</a></li>
-                    <li class="current"><a href="pop_exposure.html" class="button scrolly">Population Exposure</a></li>
-                    <li class="current"><a href="webgis.html" class="button scrolly">Webgis</a></li>
+					<a href="../pages/air_quality.html" class="button scrolly">Air Quality</a>
+                    <a href="../pages/land_cover.html" class="button scrolly">Land Cover</a>
+                    <a href="../pages/pop_exposure.html" class="button scrolly">Population Exposure</a>
+                    <a href="../pages/webgis.html" class="button scrolly">Webgis</a>
                     </div>
                 </div>
             </nav>
@@ -112,12 +114,12 @@
 						</p>
 					</div>
 					<div class="col-5 col-12-medium imp-medium">
-						<span class="image fit"><img src="/webGIS_project/images/Pop_exposure/pop2020.png" alt="" /></span>
+						<span class="image fit"><img src="/webGIS_project/assets/pop2020-RsAfy0gi.png" alt="" /></span>
 					</div>
 				</div>
 				<div class="row gtr-150" style="align-items: center">
 					<div class="col-5 col-12-medium imp-medium">
-						<span class="image fit"><img src="/webGIS_project/images/Pop_exposure/pop_quantile.png" alt="" /></span>
+						<span class="image fit"><img src="/webGIS_project/assets/pop_quantile-DG_m6cGb.png" alt="" /></span>
 					</div>
 					<div class="col-7 col-12-medium">
 						<h3>Reclassification in 5 classes</h3>
@@ -135,7 +137,7 @@
 					divided in 5 classes, that we obtained in the Air Quality page.
 					</p>
 					<ul class="actions special">
-						<li><a href="/webGIS_project/pages/air_quality.html#yearly-concentration" class="button">See how we obtained the yearly average</a></li>
+						<li><a href="../pages/air_quality.html#yearly-concentration" class="button">See how we obtained the yearly average</a></li>
 					</ul>
 				<div class="col-6 col-12-medium">
 				<p>Using the GAUL L2 data, obtained from <a href="https://data.apps.fao.org/catalog/dataset/b0634117-37c0-4125-ad87-89cb9aec4eea">FAO Gaul</a>,
@@ -212,15 +214,15 @@
 				<div class="row gtr-150 align-center">
 					<div class="col-4 col-12-medium imp-medium">
 						<p>Bivariate NO<sub>2</sub></p>
-						<span class="image fit "><img src="/webGIS_project/images/Pop_exposure/no2_bivariate.png" alt="" /></span>
+						<span class="image fit "><img src="/webGIS_project/assets/no2_bivariate-Cg-4WX_p.png" alt="" /></span>
 					</div>
 					<div class="col-4 col-12-medium imp-medium">
 						<p>Bivariate PM 2.5</p>
-						<span class="image fit"><img src="/webGIS_project/images/Pop_exposure/pm2p5_bivariate.png" alt="" /></span>
+						<span class="image fit"><img src="/webGIS_project/assets/pm2p5_bivariate-CdVPXsZh.png" alt="" /></span>
 					</div>
 					<div class="col-4 col-12-medium imp-medium">
 						<p>Bivariate PM 10</p>
-						<span class="image fit"><img src="/webGIS_project/images/Pop_exposure/pm10_bivariate.png" alt="" /></span>
+						<span class="image fit"><img src="/webGIS_project/assets/pm10_bivariate-CzBbDTCA.png" alt="" /></span>
 					</div>
 				</div>
 				<p> We can also visualize the result with a pie plot, that represents the percentage of the population 
@@ -229,19 +231,19 @@
 					<div class="col-4 col-12-medium imp-medium">
 						<p style="position: relative; z-index: 10;">Exposure to NO<sub>2</sub></p>
 						<span class="image fit" style="margin-top: -75px;">
-						<iframe src="/webGIS_project/images/Pop_exposure/pie_charts/no2.html" frameborder="0" scrolling="no" width="100%" height="350px"></iframe>
+						<iframe src="../images/Pop_exposure/pie_charts/no2.html" frameborder="0" scrolling="no" width="100%" height="350px"></iframe>
     					</span>
 					</div>
 					<div class="col-4 col-12-medium imp-medium">
 						<p style="position: relative; z-index: 10;">Exposure to PM 2.5</p>
 						<span class="image fit" style="margin-top: -75px;">
-						<iframe src="/webGIS_project/images/Pop_exposure/pie_charts/pm2p5.html" frameborder="0" scrolling="no" width="100%" height="350px"></iframe>
+						<iframe src="../images/Pop_exposure/pie_charts/pm2p5.html" frameborder="0" scrolling="no" width="100%" height="350px"></iframe>
     					</span>
 					</div>
 					<div class="col-4 col-12-medium imp-medium">
 						<p style="position: relative; z-index: 10;">Exposure to PM 10</p>
 						<span class="image fit" style="margin-top: -75px;">
-						<iframe src="/webGIS_project/images/Pop_exposure/pie_charts/pm10.html" frameborder="0" scrolling="no" width="100%" height="350px"></iframe>
+						<iframe src="../images/Pop_exposure/pie_charts/pm10.html" frameborder="0" scrolling="no" width="100%" height="350px"></iframe>
     					</span>
 					</div>
 				</div>
@@ -270,18 +272,14 @@
 					<li>GIS project 2024/2025</li><li>Developed by: Sveva Zanetti, Silvia Macchi, Giovanni Pasut</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
 				</ul>
 			</section>
-
 		<!-- Scripts -->
 			<script src="/webGIS_project/js/jquery.min.js"></script>
 			<script src="/webGIS_project/js/jquery.dropotron.min.js"></script>
-			<script src="/webGIS_project/js/jquery.scrollex.min.js"></script>
 			<script src="/webGIS_project/js/jquery.scrolly.min.js"></script>
+			<script src="/webGIS_project/js/jquery.scrollex.min.js"></script>
 			<script src="/webGIS_project/js/browser.min.js"></script>
 			<script src="/webGIS_project/js/breakpoints.min.js"></script>
 			<script src="/webGIS_project/js/util.js"></script>
 			<script src="/webGIS_project/js/main.js"></script>
-
-
-
 	</body>
 </html>

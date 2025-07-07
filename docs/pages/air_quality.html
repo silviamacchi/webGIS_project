@@ -10,12 +10,13 @@
 	<title>GIS Project</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<link rel="stylesheet" crossorigin href="/webGIS_project/assets/css/main.css" />
-	<noscript>
-		<link rel="stylesheet" crossorigin href="/webGIS_project/assets/css/noscript.css" />
-	</noscript>
+	
+		
+	<noscript></noscript>
 	<style>
 	</style>
+  <link rel="stylesheet" crossorigin href="/webGIS_project/assets/bootstrap-CSWwnEJb.css">
+  <link rel="stylesheet" crossorigin href="/webGIS_project/assets/noscript-CpCuB29a.css">
 </head>
 
 <body class="is-preload">
@@ -24,13 +25,13 @@
 		<nav>
 			<div class="nav-split">
 				<div class="nav-left">
-					<li class="current"><a href="../index.html" class="button scrolly">Home</a></li>
+					<a href="../index.html" class="button scrolly">Home</a>
 				</div>
 				<div class="nav-right">
-					<li class="current"><a href="air_quality.html" class="button scrolly">Air Quality</a></li>
-					<li class="current"><a href="land_cover.html" class="button scrolly">Land Cover</a></li>
-					<li class="current"><a href="pop_exposure.html" class="button scrolly">Population Exposure</a></li>
-					<li class="current"><a href="webgis.html" class="button scrolly">Webgis</a></li>
+					<a href="../pages/air_quality.html" class="button scrolly">Air Quality</a>
+					<a href="../pages/land_cover.html" class="button scrolly">Land Cover</a>
+					<a href="../pages/pop_exposure.html" class="button scrolly">Population Exposure</a>
+					<a href="../pages/webgis.html" class="button scrolly">Webgis</a>
 				</div>
 			</div>
 		</nav>
@@ -46,8 +47,8 @@
 				<p>
 					The aim of this project is to analyze the spatial and temporal patterns of air pollution for NO<sub>2</sub>,
 					PM2.5, and PM10 over France using CAMS reanalysis data. Data in NetCDF format
-					are processed and visualized through QGIS and the project culminates in the creation of average
-					concentration maps for
+					are processed and visualized through QGIS by converting them into raster layers using the native
+					mesh layer functionalities. The project culminates in the creation of average concentration maps for
 					each pollutant, which enable the evaluation of air quality trends and the identification of critical
 					areas in relation to current EU air quality standards.
 					<br />
@@ -63,50 +64,50 @@
 	<section>
 		<div class="container">
 			<h2><b>Processing</b></h2>
-			<h3>Processing and Visualization of CAMS Air Quality Data Using NetCDF and QGIS</h3>
-
 			<div class="row gtr-150">
 				<div class="col-7 col-12-medium">
+					<h3>Processing and Visualization of CAMS Air Quality Data Using NetCDF and QGIS</h3>
 					<p>
-						The work began by importing the CAMS dataset into QGIS in NetCDF format, which includes hourly
-						pollution data for December 2022. Once loaded as a mesh layer and assigned the
-						correct coordinate system (EPSG:4326), the data could be explored over time, showing how
-						pollutant
-						levels changed hour by hour in the selected area.
+						The NetCDF (Network Common Data Form) format is a widely adopted standard in atmospheric and
+						environmental sciences for storing multidimensional scientific datasets, such as time series of
+						pollutant concentrations across spatial grids. It is particularly suitable for handling data
+						from services like CAMS (Copernicus Atmosphere Monitoring Service) due to its efficiency in
+						managing large-scale model outputs and its support for self-describing metadata (e.g., units,
+						variable descriptions).
 					</p>
 				</div>
 				<div class="col-5 col-12-medium imp-medium">
-					<span class="image fit"><img src="/webGIS_project/images/air_quality/01.png" alt="" /></span>
+					<span class="image fit"><img src="/webGIS_project/assets/01-D0rmZhz0.png" alt="" /></span>
 				</div>
 			</div>
-
 			<div class="row gtr-150" style="align-items: center">
 				<div class="col-5 col-12-medium imp-medium">
-					<span class="image fit"><img src="/webGIS_project/images/air_quality/02.png" alt="" /></span>
+					<span class="image fit"><img src="/webGIS_project/assets/02-Bn31mhQ7.png" alt="" /></span>
 				</div>
 				<div class="col-7 col-12-medium">
 					<p>
-						To make the dataset easier to work with, the hourly values were then averaged using the Mesh
-						Calculator. This produced a single layer showing the average pollution levels for the whole
-						month. The result will be used for the next steps of the project and so it was exported as
-						GeoTIFF.
+						In the context of the project, CAMS NetCDF files were imported and processed in QGIS as mesh
+						layers, which allow for the visualization and manipulation of time-varying geospatial data.
+						After assigning the EPSG:4326 coordinate reference system, the dataset was explored and
+						processed using tools such as the Mesh Calculator to compute monthly average concentrations of
+						selected pollutants. These aggregated datasets were subsequently exported as GeoTIFF raster
+						files, resulting in a series of average concentration maps.
 					</p>
 
 				</div>
 			</div>
 
-
-			<h3>Yearly Concentration Maps and Health Guidelines</h3>
+			<h3 id="yearly-concentration">Yearly Concentration Maps and Health Guidelines</h3>
 			<div class="row gtr-150" style="align-items: center; margin-top: 1em;">
 				<div class="col-5 col-12-medium">
 					<p>
-						Yearly concentration maps are generated to represent the annual average levels of air
-						pollutants, categorized into standardized classes based on EU air quality guidelines.
-						The European Environment Agency (EEA) has established health-based thresholds for key pollutants
-						to protect both human health and the environment.
-						The EU publishes annual concentration maps for major pollutants such as NO2, PM2.5, and PM10,
-						according to these thresholds:
-					</p>
+						Yearly concentration maps are created to represent the annual average levels of air pollutants
+						categorized into standardized classes based on EU air quality guidelines.
+						After generating the yearly average rasters from monthly data, each map was reclassified into
+						five concentration levels using the
+						“Reclassify by Table” tool.
+						This step allows a clear and consistent visualization, it also helps in identify areas with
+						critical pollution levels.
 				</div>
 				<div class="col-7 col-12-medium imp-medium">
 					<table class="alt" style="text-align: center;">
@@ -159,14 +160,16 @@
 			<div class="row gtr-150" style="align-items: center; margin-top: 1em;">
 				<div class="col-5 col-12-medium">
 					<p>
-						This indicator shows how air quality, in a given year, differs from the recent five-year average.
-						It's especially useful for detecting short-term trends or anomalies, helping to identify unusual
-						changes that may require further investigation.
-						Positive values indicate higher pollution levels than the five-year average, possibly pointing
-						to worsening air quality or exceptional events like wildfires or traffic surges.
-						Negative values, on the other hand, suggest an improvement.
-						To clearly communicate these differences on maps, a dedicated visual style has been developed
-						based this specific value intervals:
+						It is an indicator that shows how air quality in a specific year deviates from the recent
+						historical average over the past five years. This measure is
+						particularly useful for highlighting short-term trends or anomalies in
+						air quality, as it can reveal unusual changes that may warrant further investigation.
+						Interpreting the results, positive values indicate that pollution levels are higher than the
+						five-year average, suggesting possible deterioration in air
+						quality or exceptional circumstances such as wildfires or increased traffic. Conversely,
+						negative values indicate lower pollution compared to the average. For
+						communicating these differences clearly on maps it has been created a diststinct visual style
+						based on these intervals:
 				</div>
 				<div class="col-7 col-12-medium imp-medium">
 					<table class="alt" style="text-align: center;">
@@ -231,15 +234,15 @@
 				<div class="row gtr-150 align-center">
 					<div class="col-4 col-12-medium imp-medium">
 						<p>Annual Average NO<sub>2</sub></p>
-						<span class="image fit "><img src="/webGIS_project/images/air_quality/gifNO2.gif" alt="" /></span>
+						<span class="image fit "><img src="/webGIS_project/assets/gifNO2-Bkg0VCoO.gif" alt="" /></span>
 					</div>
 					<div class="col-4 col-12-medium imp-medium">
 						<p>Annual Average PM 2.5</p>
-						<span class="image fit"><img src="/webGIS_project/images/air_quality/gifPM25.gif" alt="" /></span>
+						<span class="image fit"><img src="/webGIS_project/assets/gifPM25-BL5snDnV.gif" alt="" /></span>
 					</div>
 					<div class="col-4 col-12-medium imp-medium">
 						<p>Annual Average PM 10</p>
-						<span class="image fit"><img src="/webGIS_project/images/air_quality/gifPM10.gif" alt="" /></span>
+						<span class="image fit"><img src="/webGIS_project/assets/gifPM10-DGaFGgBq.gif" alt="" /></span>
 					</div>
 				</div>
 				<p>And below there are the visualizations of the annual average difference for each pollutant. They are
@@ -249,24 +252,25 @@
 				<div class="row gtr-150 align-center">
 					<div class="col-4 col-12-medium imp-medium">
 						<p>NO<sub>2</sub></p>
-						<span class="image fit "><img src="/webGIS_project/images/air_quality/04.png" alt="" /></span>
+						<span class="image fit "><img src="/webGIS_project/assets/04-5R5ctvP5.png" alt="" /></span>
 					</div>
 					<div class="col-4 col-12-medium imp-medium">
 						<p>PM 2.5</p>
-						<span class="image fit "><img src="/webGIS_project/images/air_quality/05.png" alt="" /></span>
+						<span class="image fit "><img src="/webGIS_project/assets/05-DT1ZshPX.png" alt="" /></span>
 					</div>
 					<div class="col-4 col-12-medium imp-medium">
 						<p>PM 10</p>
-						<span class="image fit"><img src="/webGIS_project/images/air_quality/06.png" alt="" /></span>
+						<span class="image fit"><img src="/webGIS_project/assets/06-uIYubB23.png" alt="" /></span>
 					</div>
 				</div>
 
 				<p>
-					Overall, the analysis shows a clear improvement in NO₂ concentrations across most of France, likely
-					reflecting the impact of reduced traffic emissions or environmental regulations. In contrast, PM2.5
+					Overall, the analysis shows a clear improvement in NO<sub>2</sub> concentrations across most of France, likely
+					reflecting the impact of reduced traffic emissions or environmental regulations. In contrast, PM 2.5
 					levels have increased in several regions, especially in the southeast, and also PM10 concentrations
 					show
-					an increase in most of the areas. 
+					an increase in most of the areas. These
+					patterns highlight the importance of continuous monitoring and targeted air quality policies.
 				</p>
 			</section>
 		</div>
@@ -289,16 +293,16 @@
 				</ul>
 			</section>
 	</section>
-
 		<!-- Scripts -->
 			<script src="/webGIS_project/js/jquery.min.js"></script>
 			<script src="/webGIS_project/js/jquery.dropotron.min.js"></script>
-			<script src="/webGIS_project/js/jquery.scrollex.min.js"></script>
 			<script src="/webGIS_project/js/jquery.scrolly.min.js"></script>
+			<script src="/webGIS_project/js/jquery.scrollex.min.js"></script>
 			<script src="/webGIS_project/js/browser.min.js"></script>
 			<script src="/webGIS_project/js/breakpoints.min.js"></script>
 			<script src="/webGIS_project/js/util.js"></script>
 			<script src="/webGIS_project/js/main.js"></script>
+			
 </body>
 
 </html>
